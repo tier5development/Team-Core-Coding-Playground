@@ -1,0 +1,28 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background: url();
+	background-size: cover;
+	font-family: sans-serif;
+
+}
+
+.title
+{
+	text-align: center;
+	padding: 50px 0 20px;
+
+}
+
+.title h1
+{
+	margin: 0;
+	padding: 0;
+	color: #262626;
+	text-transform: uppercase;
+	background-size: #fff;
+	font-size: 36px;
+
+
+}
