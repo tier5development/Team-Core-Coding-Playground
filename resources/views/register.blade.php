@@ -31,7 +31,10 @@ body {
 
 <body class="green">
 
-<form action="store" method="POST">
+
+
+
+<form onsubmit="return validation()" class="bg-light">
 
   <div id="login-page" class="row">
     <div class="col s12 z-depth-6 card-panel">
@@ -66,12 +69,12 @@ body {
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password-again" type="password" placeholder="Re-type password">
+            <input id="password-again" type="password" class="validate" placeholder="Re-type password">
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <a href="/" class="btn waves-effect waves-light col s12">Signup</a>
+           <a href="#" class="btn waves-effect waves-light col s12">Register Now</a>
           </div>
           <div class="input-field col s12">
             <p class="margin center medium-small sign-up">Already have an account? <a href="login">Login</a></p>

@@ -10,7 +10,6 @@
 <br>
 
     <h3> <a href="/post/{{$post->id}}"> {{$post->title}}</a></h3>
-    <h6> {{$post->description}}</h6>
 
   @endforeach
   @else
