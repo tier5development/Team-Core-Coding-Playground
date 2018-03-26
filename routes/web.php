@@ -11,10 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [
+  'uses'  => 'PostController@home',
+  'as'    =>  'project.home'
+]);
+
+Route::get('/register', function () {
+    return view('user.create');
 });
+
 Route::get('/login', function () {
+    return view('user.login');
+});
+
+Route::post('/nuser','PostController@store');
+/*s*/
+/*Route::get('/login', function () {
     return view('login');
 });
 Route::get('/register', function () {
@@ -26,7 +38,7 @@ Route::get('/forgotPassword', function () {
 Route::get('/test', function () {
     return view('test');
 });
-Route::resource('post','PostController');
+
 
 Route::get('/about', function () {
   $name = 'Durgesh';
@@ -36,4 +48,4 @@ Route::get('/about', function () {
     'Task number three'
   ];
     return view('about',['name' => $name],compact('tasks'));
-});
+});*/

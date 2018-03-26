@@ -30,6 +30,7 @@ body {font-family: "Lato", sans-serif}
   </div>
 </div>
 <center>
+  @yield('content')
 <footer class="page-footer">
        <div class="footer-copyright">
 
