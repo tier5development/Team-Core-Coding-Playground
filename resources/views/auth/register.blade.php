@@ -16,8 +16,9 @@
 <body>
 
 <div class="container"><br>
-<form action="#" onsubmit="return validation()" class="bg-light">
+<form action="/insert" onclick="validation()" class="bg-light" method="POST">
 
+{{csrf_field()}}
 
 <div class="form-group">
     <label>Username :</label>
@@ -28,13 +29,13 @@
 
 <div class="form-group">
     <label>Password :</label>
-    <input type="text" name="pass" class="form-control" id="pass">
+    <input type="password" name="pass" class="form-control" id="pass">
     <span id="password" class="text-danger" font-weight-bold></span>
 </div>
 
 <div class="form-group">
     <label>Confirm Password :</label>
-    <input type="text" name="conpass" class="form-control" id="conpass">
+    <input type="password" name="conpass" class="form-control" id="conpass">
     <span id="confirmpsw" class="text-danger" font-weight-bold></span>
 </div>
 
@@ -61,7 +62,7 @@ function validation()
     var pass = document.getElementById('pass').value;
     var conpass = document.getElementById('conpass').value;
     var mobile = document.getElementById('mobile').value;
-     var email = document.getElementById('mobile').value;
+    var email = document.getElementById('mobile').value;
 
 
 
@@ -98,23 +99,25 @@ if(email== "")
                 return false;
             }
 
-
-
-
-
-
-
-
-
-
 }
-
-
 
 
 </script>
 
+<br><br>
 
+<form action="/update"  class="bg-light" method="POST">
+
+ 
+ <input type = “hidden” name = “_token” value = “<?php echo csrf_token(); ?>”>
+
+
+Name: <input type = "text" name = "username"/>
+
+
+<input type = "submit" value = “Update student” /> </td>
+
+</form>
 
 
 

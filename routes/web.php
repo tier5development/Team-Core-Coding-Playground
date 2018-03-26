@@ -11,16 +11,34 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/',function()
+{
+	return view('welcome');
 });
 
-
-
-Route::get('/test', function() {
-	//return view('about');
-	return view('pages.test');
+Route::get('/register',function()
+{
+	return view('register');
 });
+
+Route::post('/insert', 'UserInsertController@insert');
+
+
+Route::post('/update','UserInsertController@edit');
+
+
+
+
+
+// Route::get('/test', function({
+// 	//return view('about');
+// 	return view('pages.test');
+// });
+
+
+Route::resource('posts','PostsController');
 
 
 

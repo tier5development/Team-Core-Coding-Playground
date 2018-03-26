@@ -1,0 +1,122 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use DB;
+
+class UserInsertController extends Controller
+{
+
+function insert(Request $req)
+
+{
+    $username = $req->input('user');
+    $pswrd = $req->input('pass');
+    $conpass = $req->input('conpass');
+    $mobile = $req->input('mobile');
+    $email = $req->input('email');
+
+    $data = array('username' => $username , 'password' => $pswrd , 'email'=> $email , 'mobile'=> $mobile);
+
+
+    DB::table('users')->insert($data);
+
+    
+
+
+
+}
+
+
+
+
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+            $name = $request->input(‘username’);
+           DB::update(‘update student set name = ? where id = ?’,[$name,$id]);
+        //echo “Record updated successfully.<br/>”;
+         //  echo ‘<a href = “/edit-records”>Click Here</a> to go back.’;
+
+
+
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
