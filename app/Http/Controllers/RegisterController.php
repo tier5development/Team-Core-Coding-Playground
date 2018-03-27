@@ -8,7 +8,7 @@ use DB;
 use App\User;
 
 
-class PostController extends Controller
+class RegisterController extends Controller
 {
 
     public function home() {
@@ -69,6 +69,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
+    public function login(){
+        
+    }
+
     public function show($id)
     {
         $post= Post::find($id);

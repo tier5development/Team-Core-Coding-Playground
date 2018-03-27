@@ -12,9 +12,10 @@
 */
 
 Route::get('/', [
-  'uses'  => 'PostController@home',
+  'uses'  => 'RegisterController@home',
   'as'    =>  'project.home'
 ]);
+
 
 Route::get('/register', function () {
     return view('user.create');
@@ -24,7 +25,15 @@ Route::get('/login', function () {
     return view('user.login');
 });
 
-Route::post('/nuser','PostController@store');
+Route::post('/nuser','RegisterController@store');
+Route::post('/ulogin','LoginController@dologin');
+
+
+
+
+
+
+
 /*s*/
 /*Route::get('/login', function () {
     return view('login');
