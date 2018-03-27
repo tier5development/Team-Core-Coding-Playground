@@ -13,10 +13,18 @@ class loginController extends Controller
   public function login(Request $req)
   {
 
-  	$username = $req->input('username');
+  	$email = $req->input('email');
   	$password = $req->input('password');
 
-  	 echo $username."--->".$password;
+  	 $check = DB::table('users')->where(['email'=>$email,'password'=>$password])->get();
+  	 if(count($check) >0)
+  	 {
+  	 		echo "Sucessfully logged in";
+  	 }
+  	 else
+  	 {
+  	 		echo "Not logged in";
+  	 }
   	
 
   }

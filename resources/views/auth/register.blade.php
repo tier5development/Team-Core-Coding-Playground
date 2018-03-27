@@ -104,17 +104,6 @@ if(email== "")
 
 </script>
 
-<br><br>
-
-<form action="/update"  class="bg-light" method="POST">
-
- 
- <input type = “hidden” name = “_token” value = “{{ csrf_token() }}”>
-Name: <input type = "text" name = "username"/>
-
-<input type = "submit" value = “Update student” /> </td>
-
-</form>
 
 
 

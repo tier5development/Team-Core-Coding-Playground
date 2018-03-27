@@ -95,7 +95,7 @@ function insert(Request $req)
 
 
 
-    }
+    
 
     /**
      * Update the specified resource in storage.

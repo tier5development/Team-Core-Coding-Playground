@@ -13,11 +13,17 @@
   <input type="hidden" name="_token" value="{{csrf_token()}}">
 
 
-  Username:<input type="text" name="username"><br>
+  email:<input type="text" name="email"><br>
   Password:<input type="password" name="password"><br>
 <input type="submit" name="login" value="Login">
 
 </form>
+
+<a href="/forgotpassword">Forgot your password</a>
+
+
+
+
 
 </center>
 

@@ -23,15 +23,23 @@ Route::get('/register',function()
 	return view('register');
 });
 
-Route::post('/insert', 'UserInsertController@insert');
+Route::get('/forgotpassword',function()
+{
+	return view('auth.forgot');
+});
+
+
+
+
+//Route::post('/insert', 'UserInsertController@insert');
 
 
 Route::post('/update','UserInsertController@edit');
 
-Route::get('list',[
-	'uses'  => 'UserInsertController@getList',
-	'as' => 'user.list'
-]);
+// Route::get('list',[
+// 	'uses'  => 'UserInsertController@getList',
+// 	'as' => 'user.list'
+// ]);
 
 Route::post('/loginme','loginController@login');
 
