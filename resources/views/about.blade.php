@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-        @extends('test')
+        
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Inconsolata:100,600" rel="stylesheet" type="text/css">
 
@@ -65,14 +65,7 @@
         </style>
     </head>
     <body>
-<?php
-    /*  <ol>
-       <?php foreach ($tasks as $task): ?>
-        <li> <?= $task;?> </li>
-
-      <?php endforeach; ?>
-    </0l> */?>
-    <center> <?= $name; ?> </center>
+    
         <div class="flex-center position-ref full-height">
 
 

@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"imple",
+				"class_implements"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"A",
+				"Auth"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"res",
+				"resource"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
 				"b",
 				"button"
 			],
@@ -71,6 +99,59 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/Http/Controllers/RegisterController.php",
+			"settings":
+			{
+				"buffer_size": 2419,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/web.php",
+			"settings":
+			{
+				"buffer_size": 1239,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/user/login.blade.php",
+			"settings":
+			{
+				"buffer_size": 848,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/Controllers/LoginController.php",
+			"settings":
+			{
+				"buffer_size": 597,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/Controllers/Auth/ForgotPasswordController.php",
+			"settings":
+			{
+				"buffer_size": 834,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/User.php",
+			"settings":
+			{
+				"buffer_size": 674,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -102,8 +183,41 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/var/www/html/durgesh",
+		"/var/www/html/durgesh/app",
+		"/var/www/html/durgesh/app/Http",
+		"/var/www/html/durgesh/app/Http/Controllers",
+		"/var/www/html/durgesh/app/Http/Controllers/Auth",
+		"/var/www/html/durgesh/database",
+		"/var/www/html/durgesh/database/migrations",
+		"/var/www/html/durgesh/database/seeds",
+		"/var/www/html/durgesh/public",
+		"/var/www/html/durgesh/resources",
+		"/var/www/html/durgesh/resources/views",
+		"/var/www/html/durgesh/resources/views/user",
+		"/var/www/html/durgesh/routes"
+	],
 	"file_history":
 	[
+		"/var/www/html/durgesh/app/Http/Controllers/Auth/LoginController.php",
+		"/var/www/html/durgesh/app/Http/Controllers/Controller.php",
+		"/var/www/html/durgesh/resources/views/user/create.blade.php",
+		"/var/www/html/durgesh/resources/views/post/login.blade.php",
+		"/var/www/html/durgesh/app/laravel.php",
+		"/var/www/html/durgesh/app/Post.php",
+		"/var/www/html/durgesh/public/web.config",
+		"/var/www/html/durgesh/resources/views/post/create.blade.php",
+		"/var/www/html/durgesh/vendor/laravel/framework/src/Illuminate/Routing/ResourceRegistrar.php",
+		"/var/www/html/durgesh/app/Http/Controllers/HomeController.php",
+		"/var/www/html/durgesh/resources/views/post/show.blade.php",
+		"/var/www/html/durgesh/resources/views/post/index.blade.php",
+		"/var/www/html/durgesh/database/migrations/2018_03_22_072415_create_posts_table.php",
+		"/var/www/html/durgesh/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/var/www/html/durgesh/app/Http/Kernel.php",
+		"/var/www/html/durgesh/resources/views/register.blade.php",
+		"/var/www/html/durgesh/firstphp.php",
 		"/var/www/html/durgesh/vendor/laravel/framework/src/Illuminate/Database/Connection.php",
 		"/home/tier5fresher/Downloads/Laravel/material-design/register.html",
 		"/home/tier5fresher/Downloads/Laravel/example228/index.php",
@@ -122,10 +236,7 @@
 		"/var/www/html/durgesh/resources/views/index.html",
 		"/var/www/html/durgesh/public/index.php",
 		"/var/www/html/durgesh/resources/views/welcome.blade.php",
-		"/var/www/html/durgesh/app/Http/Controllers/HomeController.php",
 		"/var/www/html/durgesh/app/Http/Controllers/Auth/RegisterController.php",
-		"/var/www/html/durgesh/app/Http/Controllers/Auth/LoginController.php",
-		"/var/www/html/durgesh/app/Http/Controllers/Controller.php",
 		"/home/tier5fresher/Desktop/js/script.js",
 		"/home/tier5fresher/Desktop/js/js.htm",
 		"/home/tier5fresher/Desktop/js/new.htm",
@@ -180,8 +291,185 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/Http/Controllers/RegisterController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2419,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1733,
+								1733
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 855.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "routes/web.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								482,
+								482
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "resources/views/user/login.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								775,
+								775
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/Http/Controllers/LoginController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 597,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								575,
+								575
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/Http/Controllers/Auth/ForgotPasswordController.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 834,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/User.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 674,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								157,
+								157
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -191,7 +479,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -262,7 +550,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 360.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

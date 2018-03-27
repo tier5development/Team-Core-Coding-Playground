@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 //use App\Post;
 use DB;
 use App\User;
+use Auth;
 
 
-class RegisterController extends Controller
+class UserController extends Controller
 {
 
     public function home() {
         return view('welcome');
+    }
+
+     public function logout() {
+        Auth::logout();
+        return redirect()->route('project.home');
+        //return view('user.logout');
     }
     /**
      * Display a listing of the resource.
@@ -43,6 +50,7 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //Registration Function
     public function store(Request $request)
     {
         $validateData=$request->validate([
@@ -70,7 +78,25 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function login(){
+    //Login function
+    public function dologin(Request $request){
+        $validateData=$request->validate([
+            'email' => 'required',
+            'password' => 'required|min:8'
+        ]);
+
+        $credentials = [
+            'email'     => $request->email,
+            'password'  => $request->password
+        ];
+
+        if(Auth::attempt($credentials)) {
+        
+            return redirect()->route('project.home');
+        }   else {
+            //dd("Something went wrong");
+                 return view('user.login');     
+        }
         
     }
 

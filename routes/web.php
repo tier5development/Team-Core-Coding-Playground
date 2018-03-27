@@ -12,11 +12,19 @@
 */
 
 Route::get('/', [
-  'uses'  => 'RegisterController@home',
+  'uses'  => 'UserController@home',
   'as'    =>  'project.home'
 ]);
 
+Route::get('/logout', 
+  [
+    'uses' => 'UserController@logout',
+    'as'   => 'project.logout'
+]);
 
+Route::get('/about', function () {
+    return view('about');
+});
 Route::get('/register', function () {
     return view('user.create');
 });
@@ -25,8 +33,11 @@ Route::get('/login', function () {
     return view('user.login');
 });
 
-Route::post('/nuser','RegisterController@store');
-Route::post('/ulogin','LoginController@dologin');
+
+//Register
+Route::post('/nuser','UserController@store');
+//Login
+Route::post('/ulogin','userController@dologin');
 
 
 

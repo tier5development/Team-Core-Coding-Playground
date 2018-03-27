@@ -30,43 +30,6 @@
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-<script type="text/javascript">
-  $(function() {
-    $("#registration").validate({ 
-      rules: {
-      
-        name: "required",
-        lname: "required",
-        email: {
-          required: true,
-          email: true
-        },
-        password: {
-          required: true,
-          minlength: 8,
-          equalTo : "#passwordc"
-        }
-
-      },
-      // Specify validation error messages
-      messages: {
-        name: "Please enter your firstname",
-        lname: "Please enter your lastname",
-        password: {
-          required: "Please provide a password",
-          minlength: "Your password must be at least 8 characters long",
-          equalTo : "Please check your confirm  password"
-        },
-        email: "Please enter a valid email address"
-      },
-      submitHandler: function(form) {
-        form.submit();
-      }
-    });
-  });
-</script>
 
 @if ($errors->any())
     <div class="alert alert-danger">
