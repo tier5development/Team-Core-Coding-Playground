@@ -28,6 +28,13 @@ Route::post('/insert', 'UserInsertController@insert');
 
 Route::post('/update','UserInsertController@edit');
 
+Route::get('list',[
+	'uses'  => 'UserInsertController@getList',
+	'as' => 'user.list'
+]);
+
+Route::post('/loginme','loginController@login');
+
 
 
 

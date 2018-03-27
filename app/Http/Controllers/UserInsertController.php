@@ -87,10 +87,10 @@ function insert(Request $req)
     public function edit($id)
     {
         //
-            $name = $request->input(‘username’);
-           DB::update(‘update student set name = ? where id = ?’,[$name,$id]);
-        //echo “Record updated successfully.<br/>”;
-         //  echo ‘<a href = “/edit-records”>Click Here</a> to go back.’;
+        
+   }
+            //echo “Record updated successfully.<br/>”;
+            //  echo ‘<a href = “/edit-records”>Click Here</a> to go back.’;
 
 
 

@@ -109,11 +109,8 @@ if(email== "")
 <form action="/update"  class="bg-light" method="POST">
 
  
- <input type = “hidden” name = “_token” value = “<?php echo csrf_token(); ?>”>
-
-
+ <input type = “hidden” name = “_token” value = “{{ csrf_token() }}”>
 Name: <input type = "text" name = "username"/>
-
 
 <input type = "submit" value = “Update student” /> </td>
 
