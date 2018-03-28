@@ -71,7 +71,7 @@
                     , {{Auth::user()->email}}
                     <a href="{{route('project.logout')}}">Logout</a> 
                 @else
-                    <a href="login">Login</a>
+                    <a href="login">Login</a> &nbsp&nbsp&nbsp&nbsp
                     <a href="register">Register</a>
                 @endif      
             

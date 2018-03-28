@@ -11,34 +11,44 @@
 |
 */
 
-Route::get('/', [
-  'uses'  => 'UserController@home',
-  'as'    =>  'project.home'
-]);
+//Get Requests
+    Route::get('/', [
+      'uses'  => 'UserController@home',
+      'as'    =>  'project.home'
+    ]);
 
-Route::get('/logout', 
-  [
-    'uses' => 'UserController@logout',
-    'as'   => 'project.logout'
-]);
+    Route::get('/logout', 
+      [
+        'uses' => 'UserController@logout',
+        'as'   => 'project.logout'
+    ]);
 
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/register', function () {
-    return view('user.create');
-});
+    Route::get('/about', function () {
+        return view('about');
+    });
+    
+    Route::get('/register', function () {
+        return view('user.create');
+    });
 
-Route::get('/login', function () {
-    return view('user.login');
-});
+    Route::get('/login', function () {
+        return view('user.login');
+    });
+
+    Route::get('/forgotPassword', function () {
+        return view('user.forgotPassword');
+    });
 
 
-//Register
-Route::post('/nuser','UserController@store');
-//Login
-Route::post('/ulogin','userController@dologin');
-
+//Post Requests
+    //Register
+    Route::post('/nuser','UserController@create');
+    //Login
+    Route::post('/ulogin','UserController@dologin');
+    //ForgetPassword
+    Route::post('/forget','UserController@forgetPassword');
+    //createNewPassword
+    Route::post('/newpass','UserController@newPassword');
 
 
 
