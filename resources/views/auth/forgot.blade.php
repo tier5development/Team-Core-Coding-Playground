@@ -10,9 +10,11 @@
 <div class="form-group">
 <label for="email"><b>Email id</b></label>
 <input type="email" class="form-control" name="email" aria-describedby="email" placeholder="Enter email" required>
+
+
 </div>
 
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary" value="">Send code</button>
 </form>
 <br>Login ?<a href="/login"> Login here</a>
 <br>New user ?<a href="/register"> Register here</a>

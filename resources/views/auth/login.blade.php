@@ -8,6 +8,15 @@
 </head>
 <body>
 <center>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="/loginme" method="POST">
 
   <input type="hidden" name="_token" value="{{csrf_token()}}">

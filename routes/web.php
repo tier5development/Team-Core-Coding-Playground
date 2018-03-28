@@ -23,15 +23,15 @@ Route::get('/register',function()
 	return view('register');
 });
 
-Route::get('/forgotpassword',function()
-{
-	return view('auth.forgot');
-});
+// Route::get('/forgotpassword',function()
+// {
+// 	return view('auth.forgot');
+// });
 
 
 
 
-//Route::post('/insert', 'UserInsertController@insert');
+Route::post('/insert', 'UserInsertController@insert');
 
 
 Route::post('/update','UserInsertController@edit');
@@ -42,6 +42,11 @@ Route::post('/update','UserInsertController@edit');
 // ]);
 
 Route::post('/loginme','loginController@login');
+
+Route::get('/forgotpassword','loginController@forgot');
+
+Route::post('/forgotpassword','loginController@save_data');
+
 
 
 
