@@ -75,7 +75,13 @@
                     <a href="register">Register</a>
                 @endif      
             
-        </CENTER>  
+        </CENTER>
+        @if(Session::has('message') && Session::has('success'))
+        <div class="alert {{ Session::get('success') ? 'alert-success' : 'alert-danger' }}">
+            {{Session::get('message')}}
+        </div>
+        @endif
+        <div class="alert alert">  
         <div class="flex-center position-ref full-height">
           
             <div class="content">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\User;
 use Auth;
+use Mail;
 
 
 class UserController extends Controller
@@ -27,22 +28,31 @@ class UserController extends Controller
     //Create new user function
     public function create(Request $request)
     {
-        $validateData=$request->validate([
-            'name' => 'required',
-            'lname' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required|min:8',
-            'passwordc' => 'required_with:password|same:password|min:8'
-        ]);
+        try{
 
-        $user = new User();
-        $user->name     =   $request->name;
-        $user->lname    =   $request->lname;
-        $user->email    =   $request->email;
-        $user->password =   $request->password;
-        $user->save(); 
+            $validateData=$request->validate([
+                'name'       => 'required',
+                'lname'      => 'required',
+                'email'      => 'required|unique:users',
+                'password'   => 'required|min:8',
+                'passwordc'  => 'required_with:password|same:password|min:8'
+            ]);
+
+            $user = new User();
+            $user->name     =   $request->name;
+            $user->lname    =   $request->lname;
+            $user->email    =   $request->email;
+            $user->password =   $request->password;
+            $user->save(); 
+            
+            return redirect()->route('project.home')->with(['success' => true, 'message' => 'Registered User Sucessfully!']);    
         
-        return redirect()->route('project.home');
+        } catch (Exception $exception) {
+
+            return redirect()->route('project.home')->with(['success' => false, 'message' => $exception->getMessage()]);
+            
+        }
+        
     }
 
     
@@ -68,33 +78,10 @@ class UserController extends Controller
         
     }
 
-    public function forgetPassword(Request $request){
-         $validateData=$request->validate([
-                'email' => 'required'
-            ]);
+   
 
-          //$exists = DB::table('users')->where('email', $request->email)->exists();
+    
 
-         $exists=User::where('email', '=', $request->email)->exists();
-
-          if(!$exists){
-            dd('User not exist. Go back and try again');
-          }
-          else{
-            return view('user.forgotpasswordcreater');
-          }
-
-    }
-
-    public function newPassword (Request $request){
-
-         $validateData=$request->validate([
-            'email' => 'required|unique:users',
-            'password' => 'required|min:8',
-            'passwordc' => 'required_with:password|same:password|min:8'
-        ]);
-
-    }
 
     //Show post function 
     public function show($id)

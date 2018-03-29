@@ -39,6 +39,14 @@
         return view('user.forgotPassword');
     });
 
+      Route::get('/resetPassword/{token}', function () {
+        return view('user.forgotpasswordcreator');
+    });
+
+        
+
+      //Route::get('/gotoRPC','resetPasswordController@');
+
 
 //Post Requests
     //Register
@@ -46,9 +54,9 @@
     //Login
     Route::post('/ulogin','UserController@dologin');
     //ForgetPassword
-    Route::post('/forget','UserController@forgetPassword');
+    Route::post('/forget','resetPasswordController@forgetPassword');
     //createNewPassword
-    Route::post('/newpass','UserController@newPassword');
+    Route::post('/newpass','resetPasswordController@newPassword');
 
 
 
@@ -79,3 +87,4 @@ Route::get('/about', function () {
   ];
     return view('about',['name' => $name],compact('tasks'));
 });*/
+ 
