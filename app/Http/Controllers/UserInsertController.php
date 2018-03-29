@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,16 +11,31 @@ class UserInsertController extends Controller
 function insert(Request $req)
 
 {
+
+
+
     $username = $req->input('user');
     $pswrd = $req->input('pass');
+    $pswrd1 = md5($pswrd);
     $conpass = $req->input('conpass');
     $mobile = $req->input('mobile');
     $email = $req->input('email');
 
-    $data = array('username' => $username , 'password' => $pswrd , 'email'=> $email , 'mobile'=> $mobile);
+    $data = array('username' => $username , 'password' => $pswrd1 , 'email'=> $email , 'mobile'=> $mobile);
 
 
     DB::table('users')->insert($data);
+
+
+    if($data)
+    {
+        echo "You have been registered successfully";
+    }
+    else
+    {
+
+        return view('register');
+    }
 
     
 

@@ -1,11 +1,15 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Dirape\Token\Token;
+use App\Http\Controllers\User;
+use Illuminate\Support\Facades\Redirect;
 use DB;
+use Auth;
+
+use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Reset;
 
@@ -17,6 +21,9 @@ class loginController extends Controller
 
   	$email = $req->input('email');
   	$password = $req->input('password');
+    
+
+    
 
   	$validator = Validator::make($req->all(), [
         'email' => 'required|email',
@@ -29,11 +36,12 @@ class loginController extends Controller
                     ->withInput();
     }
 
-    $user = User::where('email',$email)->where('password',$password)->first();
-  	 // $check = DB::table('users')->where(['email'=>$email,'password'=>$password])->get();
+   // $user = User::where('email',$email)->where('password',$password)->first();
+  	  $user = DB::table('users')->where(['email'=>$email,'password'=>$password])->get();
   	 if($user)
   	 {
-  	 		echo "Sucessfully logged in";
+  	 		echo "Welcome ". $email;
+
   	 }
   	 else
   	 {
@@ -52,9 +60,22 @@ public function forgot(Request $req)
 
 public function save_data(Request $request)
 {     
-$test = Reset::create($request->all());
-return redirect()->route('/');
+  
+  $reset = new Reset;
+
+    $reset->email = Input::get('email');
+     $token_key = md5(uniqid(rand(), true));
+    $reset->token = $token_key;
+    $reset->save();
+    return Redirect::back();
 }
+
+public function logout(Request $request) {
+  Auth::logout();
+  return redirect('/login');
+}
+
+
 
 
 

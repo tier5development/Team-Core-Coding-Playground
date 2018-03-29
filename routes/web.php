@@ -27,7 +27,7 @@ Route::get('/register',function()
 // {
 // 	return view('auth.forgot');
 // });
-
+Route::get('logout', '\App\Http\Controllers\Auth\loginController@logout');
 
 
 
