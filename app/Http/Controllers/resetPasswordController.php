@@ -11,7 +11,18 @@ class resetPasswordController extends Controller
 {
     
 	
-	 //Check id is exist or not
+	public function index($token) {
+		try{
+
+			return view('user.forgotpasswordcreator',[
+				'token'	=> $token	
+			]);
+
+		} catch (Exception $exception) {
+
+			return view('project.home')->with(['success' => false, 'message' => $exception->getMessage()]); 
+		}
+	}
     public function forgetPassword(Request $request){
          $validateData=$request->validate([
                 'email' => 'required'
@@ -58,7 +69,6 @@ class resetPasswordController extends Controller
 
          $validateData=$request->validate([
             'email'     => 'required',
-            'token'     => 'required',
             'password1' => 'required|min:8',
             'password2' => 'required_with:password1|same:password1|min:8'
         ]);
@@ -68,6 +78,7 @@ class resetPasswordController extends Controller
         
         if(($texists)&&($Eexists))
         {
+        	
         	User::where ('email', $request->email)->update(['password' => bcrypt($request->password1)]);
         	return view('user.login');
     	    }
@@ -75,6 +86,7 @@ class resetPasswordController extends Controller
         {
         	if(!$texists){
         			dd("Invalid token. Please go back and try again later");
+
         		}
         	else if(!$Eexists){
         			dd("Invalid email id. Please go back and try again later");	

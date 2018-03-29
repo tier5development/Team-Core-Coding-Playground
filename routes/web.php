@@ -39,11 +39,13 @@
         return view('user.forgotPassword');
     });
 
-      Route::get('/resetPassword/{token}', function () {
-        return view('user.forgotpasswordcreator');
-    });
+    Route::get('/resetPassword/{token}', [
+      'uses' => 'resetPasswordController@index',
+      'as'   => 'project.reset_password_view'
+      ]);
 
-        
+
+
 
       //Route::get('/gotoRPC','resetPasswordController@');
 

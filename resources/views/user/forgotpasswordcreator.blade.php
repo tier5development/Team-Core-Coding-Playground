@@ -14,8 +14,7 @@
                 <input type="email" class="form-control" name="email" aria-describedby="email" placeholder="Enter email" required>
             </div>
             <div class="form-group">
-                <label for="token">Token</label>
-                <input type="name" class="form-control" name="token" aria-describedby="token" placeholder="Enter the token" required>
+                <input type="hidden" class="form-control" name="token" value='{{$token}}' required>
             </div>
             <div class="form-group">
                 <label for="Password1">New Password</label>
