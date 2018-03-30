@@ -16,6 +16,9 @@ class UserController extends Controller
     public function home() {
         return view('welcome');
     }
+    public function login() {
+        return view('user.login');
+    }
 
     
     //Logout Function
@@ -30,7 +33,7 @@ class UserController extends Controller
     {
         try{
 
-            $validateData=$request->validate([
+            $validateData=$this->validate($request->all(),[
                 'name'       => 'required',
                 'lname'      => 'required',
                 'email'      => 'required|unique:users',
@@ -72,8 +75,7 @@ class UserController extends Controller
         
             return redirect()->route('project.home');
         }   else {
-            //dd("Something went wrong");
-                 return view('user.login');     
+            return redirect()->route('project.login')->with(['success' => false, 'message' => "Invalid credentials"]);     
         }
         
     }

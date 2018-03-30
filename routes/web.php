@@ -17,49 +17,53 @@
       'as'    =>  'project.home'
     ]);
 
-    Route::get('/logout', 
-      [
-        'uses' => 'UserController@logout',
-        'as'   => 'project.logout'
-    ]);
-
-    Route::get('/about', function () {
+     Route::get('/about', function () {
         return view('about');
     });
-    
-    Route::get('/register', function () {
-        return view('user.create');
+
+     Route::get('/logout', 
+          [
+            'uses' => 'UserController@logout',
+            'as'   => 'project.logout'
+        ]);
+
+    Route::middleware(['userRedirect'])->group(function () {
+        
+        Route::get('/login', 
+          [
+            'uses' => 'UserController@login',
+            'as'   => 'project.login'
+        ]);
+                
+        Route::get('/resetPassword/{token}', [
+          'uses' => 'resetPasswordController@index',
+          'as'   => 'project.reset_password_view'
+          ]);
+
+        Route::get('/register', function () {
+            return view('user.create');
+        });
+
+        Route::get('/forgotPassword', function () {
+            return view('user.forgotPassword');
+        });
     });
-
-    Route::get('/login', function () {
-        return view('user.login');
-    });
-
-    Route::get('/forgotPassword', function () {
-        return view('user.forgotPassword');
-    });
-
-    Route::get('/resetPassword/{token}', [
-      'uses' => 'resetPasswordController@index',
-      'as'   => 'project.reset_password_view'
-      ]);
-
-
 
 
       //Route::get('/gotoRPC','resetPasswordController@');
 
 
 //Post Requests
-    //Register
-    Route::post('/nuser','UserController@create');
-    //Login
-    Route::post('/ulogin','UserController@dologin');
-    //ForgetPassword
-    Route::post('/forget','resetPasswordController@forgetPassword');
-    //createNewPassword
-    Route::post('/newpass','resetPasswordController@newPassword');
-
+    
+      //Register
+      Route::post('/nuser','UserController@create');
+      //Login
+      Route::post('/ulogin','UserController@dologin');
+      //ForgetPassword
+      Route::post('/forget','resetPasswordController@forgetPassword');
+      //createNewPassword
+      Route::post('/newpass','resetPasswordController@newPassword');
+    
 
 
 

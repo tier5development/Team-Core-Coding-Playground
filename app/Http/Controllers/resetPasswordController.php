@@ -39,7 +39,7 @@ class resetPasswordController extends Controller
           else{
           	//dd();
             //return view('user.forgotpasswordcreator');
-            $token = str_random(20); 
+            $token = str_random(30); 
 
             $reset = new passwordReset();
             $reset->email = $request->email;
@@ -48,10 +48,17 @@ class resetPasswordController extends Controller
 
           }
 
-          Mail::send('resetmail',['name' => 'Durgesh','request' => $request],function($message) use($request){
-          	$message->to($request->email)->subject('Reset your password');
-          	$message->from('work@tier5.us','Work');
-          });
+          //try{
+
+	          Mail::send('resetmail',['request' => $request->email],function($message) use($request){
+	          	$message->to($request->email)->subject('Reset your password');
+	          	//$message->from('work@tier5.us','Work');
+	          });
+
+      		/*}catch(Exception $exception) {
+
+      			return view('user.forgotPassword')->with(['success' => false, 'message' => $exception->getMessage()]);
+      		}*/
 
           //return view('user.forgotpasswordcreator');
 
@@ -67,31 +74,39 @@ class resetPasswordController extends Controller
 
  	public function newPassword (Request $request){
 
-         $validateData=$request->validate([
-            'email'     => 'required',
-            'password1' => 'required|min:8',
-            'password2' => 'required_with:password1|same:password1|min:8'
-        ]);
-        
-        $texists=passwordReset::where('token', '=', $request->token)->exists();
-        $Eexists=passwordReset::where('email', '=', $request->email)->exists();
-        
-        if(($texists)&&($Eexists))
-        {
-        	
-        	User::where ('email', $request->email)->update(['password' => bcrypt($request->password1)]);
-        	return view('user.login');
-    	    }
-        else
-        {
-        	if(!$texists){
-        			dd("Invalid token. Please go back and try again later");
+        try{
+ 		        $validateData=$request->validate([
+	            'email'     => 'required',
+	            'password1' => 'required|min:8',
+	            'password2' => 'required_with:password1|same:password1|min:8'
+		        ]);
+		        
+		        $texists=passwordReset::where('token', '=', $request->token)->exists();
+		        $Eexists=passwordReset::where('email', '=', $request->email)->exists();
+		                
+		        if(($texists)&&($Eexists))
+		         {  	
+		        	User::where ('email', $request->email)->update(['password' => bcrypt($request->password1)]);
+		        	passwordReset::where('token', $request->token)->delete();
+		        	return view('user.login');
+		    	 }
+		        else
+		         {
+		        	if(!$texists){
+		        			dd("Invalid token or token got expired");
 
-        		}
-        	else if(!$Eexists){
-        			dd("Invalid email id. Please go back and try again later");	
-        	 	}
- 	     }
+		        		}
+		        	else if(!$Eexists){
+		        			dd("Invalid email id. Please go back and try again later");	
+		        	 	}
+		 	     }
+	 	   }
+
+
+	    catch (Exception $exception) {
+
+			return view('project.home')->with(['success' => false, 'message' => "Invalid Request"]); 
+		}
         
 
     }

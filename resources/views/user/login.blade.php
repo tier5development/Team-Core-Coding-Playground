@@ -21,6 +21,12 @@
 	 
 	  		<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
+
+		@if(Session::has('message') && Session::has('success'))
+        <div class="alert {{ Session::get('success') ? 'alert-success' : 'alert-danger' }}">
+            {{Session::get('message')}}
+        </div>
+        @endif
 		<br>New user ?<a href="/register"> Register here</a>
 		<br>Forget Password ?<a href="/forgotPassword"> Recover here</a>
 

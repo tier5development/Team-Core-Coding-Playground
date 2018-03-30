@@ -28,6 +28,6 @@ class resetMail extends Mailable
      */
     public function build()
     {
-        return $this->from('work@tier5.us')->view('view.resetMail');
+        return $this->from('work@tier5.us')->view('resetMail');
     }
 }
