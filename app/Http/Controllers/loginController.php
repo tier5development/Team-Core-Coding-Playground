@@ -8,13 +8,33 @@ use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use Auth;
-
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Reset;
 
 class loginController extends Controller
 {
+
+  public function index($token) {
+
+    try
+
+      {
+
+      return view('auth.resetPassword',[
+        'token' => $token 
+      ]);
+       } catch (Exception $exception) {
+      return view('project.home')->with(['success' => false, 'message' => $exception->getMessage()]); 
+    }
+  }
+
+
+
+
+
+
+
 
   public function login(Request $req)
   {
@@ -60,24 +80,23 @@ public function forgot(Request $req)
 
 public function save_data(Request $request)
 {     
-  
-  $reset = new Reset;
 
-    $reset->email = Input::get('email');
-     $token_key = md5(uniqid(rand(), true));
-    $reset->token = $token_key;
-    $reset->save();
-    return Redirect::back();
+
+
+$validateData=$request->validate([
+                'email' => 'required'
+            ]);
+
+
+     
+$reset = new Reset;
+
+       $reset->email = Input::get('email');
+       $token_key = md5(uniqid(rand(), true));
+       $reset->token = $token_key;
+       $reset->save();
+       return Redirect::back();
 }
-
-public function logout(Request $request) {
-  Auth::logout();
-  return redirect('/login');
-}
-
-
-
-
 
 
 

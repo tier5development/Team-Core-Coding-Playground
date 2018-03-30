@@ -16,15 +16,16 @@
 <body>
 
 <div class="container"><br>
-<form action="/insert" onclick="validation()" class="bg-light" method="POST">
+<form action="/insert" method="POST">
 
 {{csrf_field()}}
 
 <div class="form-group">
-    <label>Username :</label>
-    <input type="text" name="user" class="form-control" id="user">
-    <span id="username" class="text-danger" font-weight-bold></span>
+    <label>Email :</label>
+    <input type="text" name="email" class="form-control" id="email">
+    <span id="emailn" class="text-danger" font-weight-bold></span>
 </div>
+
 
 
 <div class="form-group">
@@ -46,29 +47,36 @@
 </div>
 
 
-<div class="form-group">
-    <label>Email :</label>
-    <input type="text" name="email" class="form-control" id="email">
-    <span id="emailn" class="text-danger" font-weight-bold></span>
-</div>
+
 <input type="submit" name="submit" value="submit">
 </form>
 
-<script type="text/javascript">
+
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<!-- <script type="text/javascript">
     
 function validation()
 {
-    var user = document.getElementById('user').value;
+    var email = document.getElementById('email').value;
     var pass = document.getElementById('pass').value;
     var conpass = document.getElementById('conpass').value;
     var mobile = document.getElementById('mobile').value;
-    var email = document.getElementById('mobile').value;
+    
 
 
-
-if(user == "")
+if(email== "")
             {
-                document.getElementById('username').innerHTML = "** Please fill username field";
+                document.getElementById('emailn').innerHTML = "** Please fill the email field";
                 return false;
             }
 
@@ -93,16 +101,11 @@ if(mobile== "")
                 return false;
             }
 
-if(email== "")
-            {
-                document.getElementById('emailn').innerHTML = "** Please fill the email field";
-                return false;
-            }
 
 }
 
 
-</script>
+</script> -->
 
 
 

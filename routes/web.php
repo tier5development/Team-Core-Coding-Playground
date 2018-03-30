@@ -23,10 +23,14 @@ Route::get('/register',function()
 	return view('register');
 });
 
-// Route::get('/forgotpassword',function()
-// {
-// 	return view('auth.forgot');
-// });
+Route::get('/resetP',function()
+{
+	return view('auth.resetPassword');
+});
+
+
+
+
 Route::get('logout', '\App\Http\Controllers\Auth\loginController@logout');
 
 
@@ -48,6 +52,14 @@ Route::get('/forgotpassword','loginController@forgot');
 Route::post('/forgotpassword','loginController@save_data');
 
 
+Route::post('/resetP','loginController@reset');
+
+
+Route::get('/resetP/{token}', [
+'uses' => 'loginController@index',
+
+]);
+
 
 
 
@@ -58,7 +70,7 @@ Route::post('/forgotpassword','loginController@save_data');
 // });
 
 
-Route::resource('posts','PostsController');
+
 
 
 
