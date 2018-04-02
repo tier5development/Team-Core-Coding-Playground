@@ -101,13 +101,20 @@ span.psw {
                     
                 </div>
 <div style="background-color:#FF0000;width:35%;height:500px;" class="rowTest"><div>
-  <form>
+  <form method="POST" action="login">
   @extends('chunks')
+  {{ csrf_field() }}
+    <center>@if(Session::has('message') && Session::has('success'))
+        <div class="alert {{ Session::get('success') ? 'alert-success' : 'alert-danger' }}">
+            {{Session::get('message')}}
+        </div>
+    @endif
+    </center>
     <center>
     <center><div style="height: 300px; width: 180px; background-image:url({{ asset('image/laravel.png') }});"></div></center><br><ber>
 
-    <b>Username :</b> <input type="text" name="user_name" placeholder="Enter your Username" ><br><br>
-    <b>Password :</b> <input type="password" name="password1" placeholder="Enter your password"><br><br>
+    <b>Email ID :</b> <input type="email" name="email" placeholder="Enter your Username" required><br><br>
+    <b>Password :</b> <input type="password" name="password" placeholder="Enter your password" required><br><br>
     <input type="submit" name="submit" value="LOGIN"><br>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me

@@ -93,9 +93,13 @@ span.psw {
 <div class="top-right links">
                 
                     <br><br>
-                        
-                    <a href="log_in">Login</a>
+                    @if(Auth::check())
+                        Welcome {{Auth::user()->name}}  
+                        <a href="{{route('project.logout')}}">Logout</a>
+                    @else 
+                        <a href="log_in">Login</a>
                         <a href="sign_in">Register</a>
+                    @endif
                         
                     
                     

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,21 +100,16 @@ span.psw {
                     
                     
                 </div>
-<div style="background-color:#FF0000;width:35%;height:550px;" class="rowTest"><div>
-  <form method="post" action="">
+<div style="background-color:#FF0000;width:35%;height:450px;" class="rowTest"><div>
+  <form method="POST" action="frgt">
+  {{ csrf_field() }}
 <center><div style="height: 300px; width: 180px; background-image:url({{ asset('image/laravel.png') }});"></div><br><br>
-<label for="newPassword"><b>New Password:</b></label> 
-<input type="password" id="newPassword" name="newPassword" title="New password" /><br><br>
+<label for="email"><b>Enter your email address :</b></label> 
+<input type="email" id="email" name="email" required/><br><br>
+<input type="submit" name="submit" value="Send link">
 
-<label for="confirmPassword"><b>Confirm Password:</b></label> 
-<input type="password" id="confirmPassword" name="confirmPassword" title="Confirm new password" /><br><br>
 
-<label for="token"><b>Pasword Token:</b></label> 
-<input type="text" id="token" name="token" title="Password Token" /><br><br>
 
-<p class="form-actions">
-<input type="submit" value="Change Password" title="Change password" />
-</p>
 </center></div></div>
 </form>
 </body>

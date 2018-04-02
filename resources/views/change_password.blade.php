@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +49,7 @@
 
             .content {
                 text-align: center;
-            }https://github.com/tier5/R-D-
+            }
 
             .title {
                 font-size: 84px;
@@ -88,47 +90,32 @@ span.psw {
         </style>
     </head>
 <body>
-
+@extends('chunks')
 <div class="flex-center position-ref full-height">
 <div class="top-right links">
                 
                     <br><br>
                         
-                    <a href="log_in">Login</a>
-                        <a href="/">Home</a>
+                    <a href="sign_in">REGISTER</a>
+                        <a href="log_in">LOGIN</a>
                         
                     
                     
                 </div>
-<div style="background-color:#FF0000;width:35%;height:630px;" class="rowTest"><div>
-  
-@extends('chunks')
-  <form method="POST" action="/newuser">
-  {{ csrf_field() }}
-  
-    <center>
-    <div style="height: 300px; width: 180px; background-image:url({{ asset('image/laravel.png') }});"></div><br><br>
-    <b>Name :</b> <input type="text" name="name" placeholder="Enter your full name" ><br><br>
-    <b>Username :</b> <input type="text" name="user_name" placeholder="Enter your Username" ><br><br>
-    <b>Email id :</b> <input type="text" name="email" placeholder="Enter your valid Email_id" ><br><br>
-    <b>Password :</b> <input type="password" name="password" placeholder="Enter your password" ><br><br>
-    <b>Confirm Password :</b> <input type="password" name="password2" placeholder="Just confirm your password" ><br><br>
-   
-    
-    <input type="submit" name="submit" value="Register"><br></center></div></div>
-     </form>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-        <ul>
-            <li>Errors</li>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-        </ul>
-        </div>
-    @endif
- 
- 
+<div style="background-color:#FF0000;width:35%;height:550px;" class="rowTest"><div>
+  <form method="post" action="">
+<center><div style="height: 300px; width: 180px; background-image:url({{ asset('image/laravel.png') }});"></div><br><br>
+<label for="newPassword"><b>New Password:</b></label> 
+<input type="password" id="password1" name="password1" title="New password" required/><br><br>
 
+<label for="confirmPassword"><b>Confirm Password:</b></label> 
+<input type="password" id="password2" name="password2" title="Confirm new password" required /><br><br>
+<input type="hidden"  value="{{(isset($token)) ? $token : null}}">
+
+<p class="form-actions">
+<input type="submit" value="Change Password" title="Change password" />
+</p>
+</center></div></div>
+</form>
 </body>
 </html>
