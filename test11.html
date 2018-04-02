@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>This is a test of ajax xml file </title>
+</head>
+<body>
+<p id="demo"></p>
+<button  onclick="loadajax()">Click</button>
+<script type="text/javascript">
+	function loadajax(){
+	var xhttp = new xmlHttpRequest();
+	xhttp.onreadystatechange=function(){
+		if(this.readyState ==4 && this.status==200)
+		{
+			document.getElementById("demo").innerHTML=myfunction(this);
+		} 
+	};
+	xhttp.open("GET","ajax_filename",true);
+	xhttp.send();
+}
+function myfunction(xml) {
+	var i ;
+	var xmlDoc =xml.responeXML;
+	var table ="<tr><th>Name</th><th>Surname</th></tr>";
+	var x = xmlDoc.getElementsByTagName('name');
+	for(i =0 ; i<=x.length ;i++){
+		table +="<tr><td>"+x[i].getElementsByTagName("name")[].childnode[0].nodevalue[0].nodevalue+"</td><td>"+x[i].getElementsByTagName[surname]("Surname")[0].childnode[0].nodevalue[0].nodevalue+"</td></tr>";
+	}
+	document.getElementById('demo').innerHTML=table;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?php
+session_start();
+if(!isset($_SESSION['user2']) && !isset($_SESSION['password2']))
+{
+	echo "hey data is not passed"; 
+}
+else
+{
+	$now =time();
+	if($now >$_SESSION['expire'])
+	{
+		session_destroy();
+		echo "session is expired";
+	}
+	else
+	{
+		<?php
+		echo $_SESSION['user2'];
+	 	echo "<a href='link'></a>"; 
+		?>
+	}
+}
+?>

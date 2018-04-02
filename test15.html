@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>This is a example of jquery</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("#demo1").text("hey this is a test of jquery");
+		});
+			$("#btn2").click(function(){
+			$("#demo2").html("<b>hey this is a test of jquery </b>")
+			});
+			$("#btn3").click(function(){
+				$("#demo3").val("hey this is a test of jquery ")
+			});
+
+	});
+
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("#demo1").text(function(i,origText){
+				return "old text :"+origText+"new text""(index:"+i+")";
+			});
+		});
+		$("#btn2").click(function(){
+			$("#demo2").text(function(i,origText){
+				return "old html "+ origText + "new html <b>world!</b>""(index:"+i+")";
+			});
+		});
+	});
+
+
+</script>
+<p id="demo1">Hey this is a test of jquery </p>
+<p id="demo2">Hey this is a test of jquery </p>
+<p id="demo3">Hey this is a test of jquery </p>
+<button id="btn1">Click_First</button>
+<button id="btn2">Click_Second</button>
+<button id="btn3">Click_Third</button>
+</body>
+</html>

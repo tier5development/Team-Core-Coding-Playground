@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery example</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	$(document).ready(function(){
+		$("button").click(function(){
+			$("div").animate({height:'300px' , opacity : '0.4'},"slow");
+			$("div").animate({width:'300px',opacity:'0.8'},"slow");
+			$("div").animate({height:'100px',opacity:'0.4'},"slow");
+			$("div").animate({width:'100px',opacity:'0.8'},"slow");
+			
+
+		});
+	});
+</script>
+<button>click</button>
+<div style="background:#98bf21;height:100px;width:100px;position:absolute;">This is a test of jquery</div>
+</body>
+</html>
