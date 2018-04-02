@@ -26,17 +26,22 @@ function signup($db = null) {
 		$l_name  = $_POST['l_name'];
 		$email   = $_POST['email'];
 		$password= $_POST['password'];
-		$sql = "INSERT INTO `tbl_registration` (`first_name`, `last_name`, `email`, `password`, `created_at`, `updated_at`) VALUES ('".$f_name."', '".$l_name."', '".$email."', '".$password."', NOW(), NOW())";
-		$statement = $db->prepare($sql);
-		$result = $statement->execute();
-		if ($result) {
-			$_SESSION['f_name'] = $f_name;
-			$_SESSION['l_name'] = $l_name;
-			$_SESSION['email'] = $email;
-			$_SESSION['success'] = 'Successfully logged in!';
-			header('Location: ../dashboard.php');
+		if (checkEmail($db)) {
+			$sql = "INSERT INTO `tbl_registration` (`first_name`, `last_name`, `email`, `password`, `created_at`, `updated_at`) VALUES ('".$f_name."', '".$l_name."', '".$email."', '".$password."', NOW(), NOW())";
+			$statement = $db->prepare($sql);
+			$result = $statement->execute();
+			if ($result) {
+				$_SESSION['f_name'] = $f_name;
+				$_SESSION['l_name'] = $l_name;
+				$_SESSION['email'] = $email;
+				$_SESSION['success'] = 'Successfully logged in!';
+				header('Location: ../dashboard.php');
+			} else {
+				$_SESSION['fail'] = 'Failed to login!';
+				header('Location: ../index.php');
+			}
 		} else {
-			$_SESSION['fail'] = 'Failed to login!';
+			$_SESSION['fail'] = 'Failed to login! Check your credentials';
 			header('Location: ../index.php');
 		}
 	} else {
@@ -96,7 +101,10 @@ function logout() {
  */
 function validateSignupRequest() {
 	if ($_POST['f_name'] && $_POST['l_name'] && $_POST['email'] && $_POST['password']) {
-		return true;
+		/*if (checkEmail($db) {
+			return true;
+		} else {
+			return false;*/
 	} else {
 		return false;
 	}
@@ -111,4 +119,15 @@ function validateLoginRequest() {
 	} else {
 		return false;
 	}
+}
+function checkEmail($db = null) {
+   $check = "SELECT `email` FROM `tbl_registration` WHERE `email` LIKE '".$email."'" ;
+   $statement = $db->prepare($check);
+   $result = $statement->execute();
+   $res1 = $result->fetchAll();
+   if (count($res1) > 0 ) {
+   	return false;
+   } else {
+   	return true;
+   }
 }
