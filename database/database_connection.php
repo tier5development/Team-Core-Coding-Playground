@@ -1,7 +1,7 @@
 <?php 
 	require_once(__DIR__.'/../iniseterror.php');
 	define('DB_HOST', 'localhost');
-	define('DB_NAME', 'phpsession01'); 
+	define('DB_NAME', 'phpclass'); 
 	define('DB_USER','root'); 
 	define('DB_PASSWORD','toor'); 
 	// database connectivity

@@ -15,6 +15,14 @@
             <li class="tab active"><a href="#signup">Sign Up</a></li>
             <li class="tab"><a href="#login">Log In</a></li>
         </ul>
+    <?php
+        echo $_SESSION['fail'];
+    ?>
+        <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?php
+        echo $_SESSION['fail'];
+    ?>  
         <div class="tab-content">
             <div id="signup">
                 <h1>Sign Up for Free</h1>

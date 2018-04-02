@@ -26,18 +26,27 @@ function signup($db = null) {
 		$l_name  = $_POST['l_name'];
 		$email   = $_POST['email'];
 		$password= $_POST['password'];
-		$sql = "INSERT INTO `tbl_registration` (`first_name`, `last_name`, `email`, `password`, `created_at`, `updated_at`) VALUES ('".$f_name."', '".$l_name."', '".$email."', '".$password."', NOW(), NOW())";
+		$sql = "SELECT `email` FROM `signedup` WHERE `email` LIKE '".$email."'";
 		$statement = $db->prepare($sql);
 		$result = $statement->execute();
-		if ($result) {
-			$_SESSION['f_name'] = $f_name;
-			$_SESSION['l_name'] = $l_name;
-			$_SESSION['email'] = $email;
-			$_SESSION['success'] = 'Successfully logged in!';
-			header('Location: ../dashboard.php');
-		} else {
+		$count  = $statement->fetchAll();
+		if($count == 0){			
+			$sql = "INSERT INTO `signedup` (`f_name`, `l_name`, `email`, `password`, `created_at`, `updated_at`) VALUES ('".$f_name."', '".$l_name."', '".$email."', '".$password."', NOW(), NOW())";
+			$statement = $db->prepare($sql);
+			$result = $statement->execute();
+			if ($result) {
+				$_SESSION['f_name'] = $f_name;
+				$_SESSION['l_name'] = $l_name;
+				$_SESSION['email'] = $email;
+				$_SESSION['success'] = 'Successfully logged in!';
+				header('Location: ../dashboard.php');
+			} else {
+				$_SESSION['fail'] = 'Failed to login!';
+				header('Location: ../index.php');
+			}
+		}else{
 			$_SESSION['fail'] = 'Failed to login!';
-			header('Location: ../index.php');
+				header('Location: ../index.php');
 		}
 	} else {
 		$_SESSION['fail'] = 'Missing params, failed to signup!';
@@ -53,10 +62,10 @@ function signup($db = null) {
  */
 function login($db = null) {
 	session_start();
-	if (validateLoginRequest()) {
+	if (validateLoginRequest($db)) {
 		$email   = $_POST['email'];
 		$password= $_POST['password'];
-		$sql = "SELECT * FROM `tbl_registration` WHERE `email` LIKE '".$email."' AND `password` LIKE '".$password."'";
+		$sql = "SELECT * FROM `signedup` WHERE `email` LIKE '".$email."' AND `password` LIKE '".$password."'";
 		$statement = $db->prepare($sql);
 		$result = $statement->execute();
 		if ($result) {
@@ -95,7 +104,17 @@ function logout() {
  * @return boolean 
  */
 function validateSignupRequest() {
+
+	/*$sql = "SELECT `email` FROM `signedup` WHERE `email` LIKE '".$_POST['email']."'";
+		$statement = $db->prepare($sql);
+		$result = $statement->execute();
+		$emailPrev  = $statement->fetch();*/
 	if ($_POST['f_name'] && $_POST['l_name'] && $_POST['email'] && $_POST['password']) {
+        /*if($emailPrev != $_POST['email']){
+        	return true;
+		}else{
+			header('Location: ../fail.php');
+		}*/
 		return true;
 	} else {
 		return false;
