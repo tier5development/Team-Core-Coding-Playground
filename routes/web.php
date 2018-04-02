@@ -35,7 +35,7 @@
             'as'   => 'project.login'
         ]);
                 
-        Route::get('/resetPassword/{token}', [
+        Route::get('/resetPassword', [
           'uses' => 'resetPasswordController@index',
           'as'   => 'project.reset_password_view'
           ]);
@@ -49,6 +49,9 @@
         });
     });
 
+     Route::get('/home', function () {
+            return view('post.postHome');
+        });
 
       //Route::get('/gotoRPC','resetPasswordController@');
 

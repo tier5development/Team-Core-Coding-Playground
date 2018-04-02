@@ -33,13 +33,23 @@ class UserController extends Controller
     {
         try{
 
-            $validateData=$this->validate($request->all(),[
+            $validateData=$this->validate($request,
+              [
                 'name'       => 'required',
                 'lname'      => 'required',
                 'email'      => 'required|unique:users',
                 'password'   => 'required|min:8',
-                'passwordc'  => 'required_with:password|same:password|min:8'
-            ]);
+                'passwordc'  => 'required:password|same:password|min:8'
+              ],
+              
+              [
+                'name.required' => 'Please give a proper name',
+                'lname.required' => 'Please give a proper  last name',
+                'email.required' => 'The email is taken or invalid',
+                'password.required' => 'The password should be minimum 8 character long',
+                'passwordc.required' => 'The password confirm should be same as password'
+              ]
+            );
 
             $user = new User();
             $user->name     =   $request->name;

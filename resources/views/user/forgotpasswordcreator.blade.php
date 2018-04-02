@@ -9,12 +9,13 @@
     <hr>
     <form method="POST" action="/newpass" id="registration">
       {{csrf_field() }}
-            <div class="form-group">
+           <!--  <div class="form-group">
                 <label for="email">Email id</label>
                 <input type="email" class="form-control" name="email" aria-describedby="email" placeholder="Enter email" required>
-            </div>
+            </div> -->
             <div class="form-group">
                 <input type="hidden" class="form-control" name="token" value='{{$token}}' required>
+                <input type="hidden" class="form-control" name="user_id" value='{{$user_id}}' required>
             </div>
             <div class="form-group">
                 <label for="Password1">New Password</label>
