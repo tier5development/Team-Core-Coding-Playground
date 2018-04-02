@@ -26,6 +26,12 @@ function signup($db = null) {
 		$l_name  = $_POST['l_name'];
 		$email   = $_POST['email'];
 		$password= $_POST['password'];
+		$sql1="SELECT * FROM tbl_registration WHERE email='$email' ";
+		$statement1=$db->prepare($sql1);
+		$result1=$statement1->execute();
+	    $count =$statement1->fetchAll();
+	    $count1 =count($count); 
+		if($count1 ==0 ){
 		$sql = "INSERT INTO `tbl_registration` (`first_name`, `last_name`, `email`, `password`, `created_at`, `updated_at`) VALUES ('".$f_name."', '".$l_name."', '".$email."', '".$password."', NOW(), NOW())";
 		$statement = $db->prepare($sql);
 		$result = $statement->execute();
@@ -39,6 +45,11 @@ function signup($db = null) {
 			$_SESSION['fail'] = 'Failed to login!';
 			header('Location: ../index.php');
 		}
+	}
+	else {
+		$_SESSION['fail'] = 'Failed to login!';
+			header('Location: ../index.php');
+	}	
 	} else {
 		$_SESSION['fail'] = 'Missing params, failed to signup!';
 		header('Location: ../index.php');
