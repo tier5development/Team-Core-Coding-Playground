@@ -17,10 +17,17 @@ class resetPasswordController extends Controller
 
 			$token = (Input::has('token')) ? Input::get('token') : null;
 			$user_id = (Input::has('user_id')) ? Input::get('user_id') : null;
-			return view('user.forgotpasswordcreator',[
+			$texists=passwordReset::where('token', '=', $token)->exists();
+			if(!$texists){
+				dd("The link got expired");
+			}
+			else{
+				return view('user.forgotpasswordcreator',[
 				'token'	=> $token,
 				'user_id'	=> $user_id	
 			]);
+			}
+			
 
 		} catch (Exception $exception) {
 
@@ -61,6 +68,8 @@ class resetPasswordController extends Controller
           	$message->to($request->email)->subject('Reset your password');
           });
 
+          dd("Check your email");
+
       		/*}catch(Exception $exception) {
 
       			return view('user.forgotPassword')->with(['success' => false, 'message' => $exception->getMessage()]);
@@ -87,6 +96,7 @@ class resetPasswordController extends Controller
 		        ]);
 
 		        $user = User::find(base64_decode($request->user_id));
+		        //$texists=passwordReset::where('token', '=', $request->token)->exists();
 		        
 		        //$texists=passwordReset::where('token', '=', $request->token)->exists();
 		        //$Eexists=passwordReset::where('email', '=', $request->email)->exists();
@@ -100,16 +110,17 @@ class resetPasswordController extends Controller
 		        	passwordReset::where('token', $request->token)->delete();
 		        	return view('user.login');
 		    	 }
-		        else
-		         {
-		        	if(!$texists){
-	        			dd("Invalid token or token got expired");
-	        		}
-		        	else if(!$Eexists){
-	        			dd("Invalid email id. Please go back and try again later");	
-	        	 	}
-		 	     }
-	 	   }
+		        // else if(!$texists)
+		        //  {
+		        // 	 dd("Token got expired. Please go back and try again later");	
+	        	//  	}
+	        	 else
+	        	 {
+	        	 	dd("Something wrong please try again later");
+	        	 }
+
+		 	    }
+	 	   
 
 
 	    catch (Exception $exception) {
