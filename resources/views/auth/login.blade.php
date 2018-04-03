@@ -7,7 +7,15 @@
           href="https://fonts.googleapis.com/css?family=Tangerine">
 </head>
 <body>
-<center>
+
+<form action="/loginuser" method="POST">
+{{csrf_field() }}  
+  email:<input type="text" name="email"><br>
+  Password:<input type="password" name="password"><br>
+<input type="submit" name="login" value="Login">
+
+</form>
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -17,18 +25,7 @@
         </ul>
     </div>
 @endif
-<form action="/loginme" method="POST">
-
-  <input type="hidden" name="_token" value="{{csrf_token()}}">
-
-
-  email:<input type="text" name="email"><br>
-  Password:<input type="password" name="password"><br>
-<input type="submit" name="login" value="Login">
-
-</form>
-
-<a href="/forgotpassword">Forgot your password</a>
+<a href="/forgotpw">Forgot your password</a>
 
 
 

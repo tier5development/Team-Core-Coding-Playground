@@ -5,12 +5,13 @@
 
 <body>
 
-<form method="POST" action="/forgotpassword" id="registration">
+<form method="POST" action="/forgotpw" id="registration">
 	{{ csrf_field() }}
 
 	<div class="form-group">
 		<label for="email"><b>Email id</b></label>
 		<input type="email" class="form-control" name="email" aria-describedby="email" placeholder="Enter email" required>
+
 	</div>
 
 	<button type="submit" class="btn btn-primary" value="">Send code</button>

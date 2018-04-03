@@ -63,50 +63,6 @@
     </div>
 @endif
 
-<!-- <script type="text/javascript">
-    
-function validation()
-{
-    var email = document.getElementById('email').value;
-    var pass = document.getElementById('pass').value;
-    var conpass = document.getElementById('conpass').value;
-    var mobile = document.getElementById('mobile').value;
-    
-
-
-if(email== "")
-            {
-                document.getElementById('emailn').innerHTML = "** Please fill the email field";
-                return false;
-            }
-
-
-if(pass == "")
-            {
-                document.getElementById('password').innerHTML = "** Please fill password field";
-                return false;
-            }
-
-
-if(conpass== "")
-            {
-                document.getElementById('confirmpsw').innerHTML = "** Please fill the confirm password field";
-                return false;
-            }
-
-
-if(mobile== "")
-            {
-                document.getElementById('mobnum').innerHTML = "** Please fill mobile field";
-                return false;
-            }
-
-
-}
-
-
-</script> -->
-
 
 
 

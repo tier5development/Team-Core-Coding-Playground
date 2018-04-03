@@ -13,10 +13,17 @@
 
 
 
-Route::get('/',function()
-{
-	return view('welcome');
-});
+Route::get('/', [
+	'uses'	=> 'AuthController@home',
+	'as'	=>	'project.home'
+]);
+
+Route::get('/forgotpw', [
+	'uses'	=> 'loginController@forgot',
+	'as'	=>	'auth.forgot'
+]);
+
+
 
 Route::get('/register',function()
 {
@@ -31,48 +38,55 @@ Route::get('/resetP',function()
 
 
 
-Route::get('logout', '\App\Http\Controllers\Auth\loginController@logout');
+Route::get('/logout', 
+          [
+            'uses' => 'loginController@logout',
+            'as'   => 'project.logout'
+        ]);
+
+ 
+ //Route::post('/forgotpw','loginController@forgetPassword');//forget password
+
+
+ Route::post('/resetP','loginController@resetPassword');//reset password
 
 
 
-Route::post('/insert', 'UserInsertController@insert');
+Route::post('/insert', [
+	'uses' 	=>	'UserInsertController@insert',
+	'as'	=>	'user.insert'
+]);
 
 
 Route::post('/update','UserInsertController@edit');
 
-// Route::get('list',[
-// 	'uses'  => 'UserInsertController@getList',
-// 	'as' => 'user.list'
+
+
+Route::post('/loginuser','loginController@login');
+
+
+
+
+Route::post('/forgotpw','loginController@save_data');
+
+
+// Route::get('/resetP/{token}', [
+// 	'uses'	=> 'loginController@forgot',
+// 	'as'	=>	'auth.reset'
 // ]);
 
-Route::post('/loginme','loginController@login');
-
-Route::get('/forgotpassword','loginController@forgot');
-
-Route::post('/forgotpassword','loginController@save_data');
 
 
-Route::post('/resetP','loginController@reset');
+// Route::post('/resetP','loginController@reset');
 
 
-Route::get('/resetP/{token}', [
-'uses' => 'loginController@index',
-
-]);
-
-
+Route::get('/resetPassword', [
+          'uses' => 'loginController@index',
+          'as'   => 'project.reset_password_view'
+          ]);
 
 
-
-// Route::get('/test', function({
-// 	//return view('about');
-// 	return view('pages.test');
-// });
-
-
-
-
-
+       
 
 
 
