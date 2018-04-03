@@ -7,6 +7,34 @@
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        /*function showHint(str){
+            if(str.length == 0){
+                document.getElementById("txtHint").innerHTML="";
+                return ;
+            }
+            else
+            {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function(){
+                    if(this.readyState == 4 && this.status ==200){
+                        document.getElementById("txtHint").innerHTML=this.responeText;
+                    }
+                };
+                xmlhttp.open("GET" , "data.php?q=" + str ,true);
+                xmlhttp.send();
+            }
+        }*/
+        
+        $(document).ready(function(){
+                 $("btn1").click(function(){
+                 $.ajax({url: "data.php", success: function(result){
+                 $("#div1").html(result);
+        }});
+    });
+});
+    </script>
 </head>
 
 <body>
@@ -37,7 +65,8 @@
                         <label>
                             Email Address<span class="req">*</span>
                         </label>
-                        <input type="email" required autocomplete="off" name="email"/>
+                        <input type="email" id="email" required autocomplete="off" name="email" />
+                        <p>Suggestion:<span id="txtHint"></span></p>
                     </div>
                     <div class="field-wrap">
                         <label>
@@ -45,7 +74,7 @@
                         </label>
                         <input type="password" required autocomplete="off" name="password"/>
                     </div>
-                    <button type="submit" class="button button-block" />Get Started</button>
+                    <button type="submit" id="btn1" class="button button-block" />Get Started</button>
                     <input type="hidden" name="functionality" value="signup">
                 </form>
             </div>
@@ -65,7 +94,7 @@
                         <input type="password" required autocomplete="off" name="password"/>
                     </div>
                     <p class="forgot"><a href="#">Forgot Password?</a></p>
-                    <button class="button button-block" />Log In</button>
+                    <button class="button button-block" id="btn2" />Log In</button>
                     <input type="hidden" name="functionality" value="login">
                 </form>
             </div>
