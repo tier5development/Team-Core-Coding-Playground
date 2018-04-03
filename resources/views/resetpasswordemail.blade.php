@@ -5,5 +5,5 @@
 <p>Some text</p>
 
 <p>Some more text</p> <br>
-<a href="{{route('project.reset_password_view',['token' => $token])}}"> Click here to change the password of Team Core</a>
-<br> <h4> Regards</h4><br><h5>dev.tarun.hybrid.core</h5>
+<a href="{{route('project.reset_password_view',['token' => $token , 'user_id'=> $user_id])}}"> Click here to change the password of Team Core</a>
+<br> <h4> Regards</h4><br> 

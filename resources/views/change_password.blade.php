@@ -103,19 +103,35 @@ span.psw {
                     
                 </div>
 <div style="background-color:#FF0000;width:35%;height:550px;" class="rowTest"><div>
-  <form method="post" action="">
+  <form method="post" action="cnfrmPass">
+  {{ csrf_field() }}
+
+  <input type="hidden" name="token" value='{{$token}}'>
+  <input type="hidden" name="user_id" value='{{$user_id}}'>
+
 <center><div style="height: 300px; width: 180px; background-image:url({{ asset('image/laravel.png') }});"></div><br><br>
 <label for="newPassword"><b>New Password:</b></label> 
-<input type="password" id="password1" name="password1" title="New password" required/><br><br>
+<input type="password" id="password" name="password" title="New password" /><br><br>
 
 <label for="confirmPassword"><b>Confirm Password:</b></label> 
-<input type="password" id="password2" name="password2" title="Confirm new password" required /><br><br>
-<input type="hidden"  value="{{(isset($token)) ? $token : null}}">
+<input type="password" id="password2" name="password2" title="Confirm new password"  /><br><br>
+
+
 
 <p class="form-actions">
 <input type="submit" value="Change Password" title="Change password" />
 </p>
 </center></div></div>
 </form>
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+            <li>Errors</li>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+@endif
 </body>
 </html>
