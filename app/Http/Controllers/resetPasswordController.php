@@ -18,13 +18,14 @@ class resetPasswordController extends Controller
 			$token = (Input::has('token')) ? Input::get('token') : null;
 			$user_id = (Input::has('user_id')) ? Input::get('user_id') : null;
 			$texists=passwordReset::where('token', '=', $token)->exists();
+			//dd($uname->name);
 			if(!$texists){
 				dd("The link got expired");
 			}
 			else{
 				return view('user.forgotpasswordcreator',[
 				'token'	=> $token,
-				'user_id'	=> $user_id	
+				'user_id'	=> $user_id
 			]);
 			}
 			
@@ -56,19 +57,21 @@ class resetPasswordController extends Controller
             $reset = new passwordReset();
             $reset->email = $request->email;
             $reset->token = $token;
-            $reset->save();        
-
+            $reset->save();   
+           
           }
+                 
+           
 
           //try{
 
-          Mail::send('resetmail',['email' => $user->email,'token' => $reset->token,'user_id' => base64_encode($user->id)],
+          Mail::send('resetmail',['email' => $user->email,'token' => $reset->token,'user_id' => base64_encode($user->id),'user'=>$user->name],
           	function($message) use($request) {
-          	$message->from('work@tier5.us','Work');
+          	$message->from('work@tier5.us','dev.durgesh.laravel');
           	$message->to($request->email)->subject('Reset your password');
           });
 
-          dd("Check your email");
+          dd("Check your email wait 30 minutes before requesting again ");
 
       		/*}catch(Exception $exception) {
 

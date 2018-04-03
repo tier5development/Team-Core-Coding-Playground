@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class UnauthorizedUser
 {
@@ -16,7 +17,7 @@ class UnauthorizedUser
     public function handle($request, Closure $next)
     {
         if(!Auth::check()){
-            return redirect('/login');
+            return redirect('/login')->with(['success' => false, 'message' => "You have to login before accessing this page "]);
         }
         return $next($request);
     }

@@ -27,6 +27,7 @@
             'as'   => 'project.logout'
         ]);
 
+    //Middleware for authorized user
     Route::middleware(['userRedirect'])->group(function () {
         
         Route::get('/login', 
@@ -49,14 +50,19 @@
         });
     });
 
-     Route::get('/home', function () {
-            return view('post.postHome');
-        });
-
+    
       //Route::get('/gotoRPC','resetPasswordController@');
 
+    //Middleware for unAnthorized user
+    Route::middleware(['UnauthorizedUser'])->group(function () {
+               
+             Route::get('/home', function () {
+                return view('post.postHome');
+            });
 
-//Post Requests
+    });
+    
+    //Post Requests
     
       //Register
       Route::post('/nuser','UserController@create');
