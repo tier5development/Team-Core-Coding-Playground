@@ -65,11 +65,22 @@
              Route::get('/homepage', function () {
                 return view('post.postHome');
             });
-                         
+
+            //   Route::get('/mypost', function () {
+            //     return view('post.listPost');
+            // });
+               
+             Route::get('/mypost', 
+                [
+                  'uses' => 'PostController@postList',
+                  'as'   => 'project.mypost'
+              ]);            
+             
              Route::get('/home', 'PostController@showPost');
 
-             //Post request
-            Route::post('/cpost','PostController@createpost');
+             Route::post('/cpost','PostController@createpost');
+             
+             Route::post('/delete','PostController@deletePost');
 
     });
     

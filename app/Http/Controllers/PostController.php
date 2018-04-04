@@ -29,4 +29,17 @@ class PostController extends Controller
     	return view('post.postHome',['post' => $post]); 
     }
 
+    public function postList()
+    {
+    	$post= Post::all();
+    	return view('post.listPost',['post' => $post]);
+    }
+
+    public function deletePost(Request $request)
+    {	
+    	$post=Post::where('id', $request->post_id)->first();
+    	Post::where('id', $request->post_id)->delete();
+    	return redirect()->route('project.mypost')->with(['success' => true, 'message' => 'Your post is deleted successfully!']);
+    }
+
 }

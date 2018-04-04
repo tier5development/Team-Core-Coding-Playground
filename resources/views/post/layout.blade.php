@@ -43,6 +43,9 @@
           
 
             @if(Auth::check())
+             <li class="nav-item">
+                <a class="nav-link" href="{{route('project.mypost')}}">My Post</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{route('project.logout')}}">Logout</a>
               </li>

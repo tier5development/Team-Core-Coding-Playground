@@ -12,7 +12,7 @@
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h1 class="mt-4"><i>post from all user displayed here </i></h1>
+          <h1 class="mt-4"><i>All post from  user- {{Auth::user()->email}} displayed here </i></h1>
 
           <!-- Author -->
          
@@ -28,14 +28,28 @@
 
           <!-- Post Content -->
 
+          @if(Session::has('message') && Session::has('success'))
+            <div class="alert {{ Session::get('success') ? 'alert-success' : 'alert-danger' }}">
+                {{Session::get('message')}}
+            </div>
+          @endif
+          
           @foreach($post as $show)
+          @if($show->userEmail==Auth::user()->email)
+                <form method="POST" action="/delete">
+                   {{csrf_field() }}
                 <p><h4>{{$show->title}}</b></h4><br>
                 <h5>{{$show->description}}</h5>
                 <footer class="blockquote-footer">Posted by:
                    <i>{{$show->userEmail}}</i>
                 </footer></p>
+                 <input type="hidden" class="form-control" name="post_id" value='{{$show->id}}' required>
+                 <button type="submit" class="btn btn-primary">Delete</button>
                 <hr style="height:2px;color:#444;background-color:#444;" />
-           @endforeach     
+              </form>
+
+            @endif
+          @endforeach     
 
          
 
