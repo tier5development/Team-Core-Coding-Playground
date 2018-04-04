@@ -28,6 +28,8 @@ class RstPswrdController extends Controller
     		$reset->token = $token;
     		$reset->save();
 
+
+
     		Mail::send('resetpasswordemail',['email' => $reset->email ,'token' => $reset->token , 'user_id' => base64_encode($exists->id)],
     				function($message) use($request) {
     				$message->from('work@tier5.us','Hello');
@@ -43,10 +45,21 @@ class RstPswrdController extends Controller
 
 			$token = (Input::has('token')) ? Input::get('token') : null;
 			$user_id = (Input::has('user_id')) ? Input::get('user_id') : null;
-			return view('change_password',[
-			'token' => $token,
-			'user_id' => $user_id
-			]);
+			
+
+            $exists=passwordReset::where('token','=',$token)->exists();
+            if(!$exists)
+            {
+                dd("You already changed the password using this link, So the link is expired");
+
+            }
+            else
+            {
+                return view('change_password',[
+                'token' => $token,
+                'user_id' => $user_id
+                ]);
+            }
 
     }
 
