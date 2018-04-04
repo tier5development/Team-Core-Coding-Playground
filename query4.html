@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>This is title of jquery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#flip").click(function(){
+			$("#panel").slideToggle("slow");
+		});
+	});
+</script>
+<script>
+	$(document).ready(function(){
+		$("button").click(function(){
+			var div = $("div");
+			div.animate({height : '300px',opacity : '0.4'},"slow");
+			div.animate({width : '300px',opacity : '0.8'}, "slow");
+			div.animate({height : '100px',opacity : '0.4'},"slow");
+			div.animate({width : '100px',opacity : '0.8'},"slow");
+		});
+	});
+</script>
+<style>
+	#panel,#flip{
+		padding: 5px;
+		text-align: center;
+		background-color: grey;
+		border: solid 1px black;
+	}
+	#panel{
+		padding: 50px;
+		display: none;
+	}
+</style>
+</head>
+<body>
+<button>click</button>
+<div id="flip">click to slide down panel</div>
+<div id="panel">Hello world</div>
+
+<div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+<button>click</button>
+</body>
+</html>

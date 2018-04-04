@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+<script type="text/javascript">
+	var xhttp = new xmlHttpRequest();
+	 xhttp.onreadychangestate=function(){
+	 	if(this.readyState==4 && this.status==200)
+	 	{
+	 		var xmldoc=this.responseXML;
+	 		var txt="";
+	 		var x =xmldoc.getElementsByTagName('Anirban');
+	 		for(var o =0 ; o <=x.length ;o++)
+	 		{
+	 			txt = txt +x[o].childNode[0].nodeValue + "<br>";
+	 		} 
+	 		document.getElementsById("demo")=txt;
+	 	}
+	 };
+xhttp.open("POST","",true);
+xhttp.send();
+</script>
+</body>
+</html>

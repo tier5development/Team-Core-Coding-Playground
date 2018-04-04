@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="id1">Hey this is a test </h1>
+<p id="id2"></p>
+<script type="text/javascript">
+	document.getElementById("id1").innerHTML=document.getElementById("id2").firstChild.nodeValue;
+
+	document.getElementById("id1").innerHTML=document.getElementById("id2").childNodes[0].nodeValue;
+</script>
+
+</body>
+</html>

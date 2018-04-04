@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p>This is a test of javascript</p>
+<button id="myBtn">Try it </button>
+<p id="demo"></p>
+<script type="text/javascript">
+var p1=7;
+var p2=8;
+document.getElementById('myBtn').addEventListener("click",function(){ myfunction(p1,p2);
+});
+function myfunction(a,b){
+	var result=a*b;
+	document.getElementById('demo').innerHTML=result;
+}	
+</script>
+</body>
+</html>

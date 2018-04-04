@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width , initial-scale=1.0">
+<head>
+	<style> 
+	*{
+		box-sizing: border-box;
+	}
+	
+	.left{
+		background-color: red;
+		padding: 20px;
+		float: left;
+		width: 20%;
+	}
+	.main{
+		background-color: green;
+		padding: 20px;
+		float: left;
+		width: 60%
+	}
+	.right{
+		background-color: grey;
+		padding: 20px;
+		float: left;
+		width: 60%
+	}
+
+	@media screen and (max-width: 800px)
+	.left , .main , .right {
+		width: 100 % ;
+	}
+	</style>
+</head>
+<body>
+<div class="left">
+	<p>Left Menu</p>
+</div>
+<div class="right">
+	<p>Main content</p>
+</div>
+<div class="right">
+	<p>Right content</p>
+</div>
+
+</body>
+</html>

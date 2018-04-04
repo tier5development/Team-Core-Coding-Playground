@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div id="div1">
+	<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+</div>
+<script type="text/javascript">
+	var para = document.createElement("p");
+	var node =document.createTextNode("hey this is a test of ndoe in javascript");
+	para.appendChild(node);
+	var element = document.getElementById("div1");
+	element.appendChild(para);
+	element.insertBefore(para,element);
+	document.getElementById("div1").innerHTML=mycollection[1].innerHTML + mycollection.length ;
+
+</script>
+</body>
+</html>
