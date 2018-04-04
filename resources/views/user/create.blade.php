@@ -5,7 +5,7 @@
 </head>
 
 <body>
-
+@extends('post.layout')
 <hr>
 <form method="POST" action="/nuser" id="registration">
   {{csrf_field() }}

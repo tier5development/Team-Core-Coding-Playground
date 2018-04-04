@@ -64,15 +64,13 @@
         </style>
     </head>
     <body>
-        <CENTER>
+        <CENTER>@extends('post.layout')
             
                 @if(Auth::check())
-                    Welcome {{Auth::user()->name}}
-                    , {{Auth::user()->email}}
-                    <a href="{{route('project.logout')}}">Logout</a> 
-                @else
-                    <a href="login">Login</a> &nbsp&nbsp&nbsp&nbsp
-                    <a href="register">Register</a>
+                    
+                     {{Auth::user()->email}}
+                    
+                
                 @endif      
             
         </CENTER>

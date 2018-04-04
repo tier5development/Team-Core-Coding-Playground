@@ -4,7 +4,7 @@
 </head>
 
 <body>
-
+@extends('post.layout')
     <h4>Reset your password here</h4>
     <hr>
     <form method="POST" action="/newpass" id="registration">

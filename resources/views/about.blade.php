@@ -65,6 +65,7 @@
         </style>
     </head>
     <body>
+        @extends('post.layout');
     
         <div class="flex-center position-ref full-height">
 

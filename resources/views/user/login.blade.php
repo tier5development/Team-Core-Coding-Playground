@@ -4,7 +4,7 @@
 </head>
 
 <body>
-
+@extends('post.layout')
 	@if(Auth::check())
 		 Welcome {{Auth::user()->name}}
 	@else

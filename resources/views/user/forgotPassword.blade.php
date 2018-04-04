@@ -4,7 +4,7 @@
 </head>
 
 <body>
-
+@extends('post.layout')
 		<form method="POST" action="/forget" id="registration">
 	  		{{csrf_field() }}
 	    	<div class="form-group">

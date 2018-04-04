@@ -56,13 +56,24 @@
     //Middleware for unAnthorized user
     Route::middleware(['UnauthorizedUser'])->group(function () {
                
-             Route::get('/home', function () {
+           
+
+             Route::get('/create', function () {
+                return view('post.createPost');
+            });
+
+             Route::get('/homepage', function () {
                 return view('post.postHome');
             });
+                         
+             Route::get('/home', 'PostController@showPost');
+
+             //Post request
+            Route::post('/cpost','PostController@createpost');
 
     });
     
-    //Post Requests
+    //User Post Requests
     
       //Register
       Route::post('/nuser','UserController@create');
@@ -72,6 +83,8 @@
       Route::post('/forget','resetPasswordController@forgetPassword');
       //createNewPassword
       Route::post('/newpass','resetPasswordController@newPassword');
+
+      
     
 
 
@@ -101,5 +114,4 @@ Route::get('/about', function () {
     'Task number three'
   ];
     return view('about',['name' => $name],compact('tasks'));
-});*/
- 
+});*/ 
