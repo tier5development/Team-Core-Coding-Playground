@@ -18,6 +18,8 @@ body {font-family: "Lato", sans-serif}
 <a class="tab w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
 <a href="\" class="tab w3-bar-item w3-button w3-padding-large">HOME</a>
 <a href="" class="tab w3-bar-item w3-button w3-padding-large w3-hide-small">USERS</a>
+<a href="\post" class="tab w3-bar-item w3-button w3-padding-large w3-hide-small">POST COMMENT</a>
+<a href="\displaypost" class="tab w3-bar-item w3-button w3-padding-large w3-hide-small">DISPLAY POST</a>
 
 <div class="w3-dropdown-hover w3-hide-small">
 <button class="tab w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>

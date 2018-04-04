@@ -8,6 +8,10 @@ Route::post('frgt', 'RstPswrdController@frgt');
 
 Route::post('cnfrmPass', 'RstPswrdController@newPass');
 
+Route::post('afterposting', 'PostController@posting');
+
+
+
 
 
 
@@ -23,6 +27,7 @@ Route::get('about', function () {
 Route::get('users', function () {
     return view('users');
 });
+
 
 
 
@@ -67,5 +72,24 @@ Route::get('log_in',[
 Route::get('forget_password', function () {
     return view('forget_password');
 });
+
+});
+
+
+
+
+
+Route::middleware(['UserAccess'])->group(function() {
+
+Route::get('post', function () {
+    return view('post');
+});
+
+Route::get('displaypost',[
+		'uses' => 'PostController@viewpost',
+		'as' => 'project.displaypost'
+	]);
+
+
 
 });
