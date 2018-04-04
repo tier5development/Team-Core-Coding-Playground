@@ -7,34 +7,6 @@
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <script>
-        /*function showHint(str){
-            if(str.length == 0){
-                document.getElementById("txtHint").innerHTML="";
-                return ;
-            }
-            else
-            {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange=function(){
-                    if(this.readyState == 4 && this.status ==200){
-                        document.getElementById("txtHint").innerHTML=this.responeText;
-                    }
-                };
-                xmlhttp.open("GET" , "data.php?q=" + str ,true);
-                xmlhttp.send();
-            }
-        }*/
-        
-        $(document).ready(function(){
-                 $("btn1").click(function(){
-                 $.ajax({url: "data.php", success: function(result){
-                 $("#div1").html(result);
-        }});
-    });
-});
-    </script>
 </head>
 
 <body>
@@ -66,7 +38,7 @@
                             Email Address<span class="req">*</span>
                         </label>
                         <input type="email" id="email" required autocomplete="off" name="email" />
-                        <p>Suggestion:<span id="txtHint"></span></p>
+                        
                     </div>
                     <div class="field-wrap">
                         <label>

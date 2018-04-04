@@ -2,6 +2,7 @@
 require_once(__DIR__.'/../iniseterror.php');
 require_once(__DIR__.'/../database/database_connection.php');
 $functionality = $_POST['functionality'];
+
 switch ($functionality) {
 	case 'signup':
 		signup($db);
@@ -48,7 +49,16 @@ function signup($db = null) {
 	}
 	else {
 		$_SESSION['fail'] = 'Failed to login!';
-			header('Location: ../index.php');
+		$Message="This is an error";
+		
+    //echo "<script type='text/javascript'></script>";
+			//header('Location: ../index.php');
+	//	header("Location: ../index.php?Message=" .$Message);
+		//echo "<script type="type/javascript">alert("this is an error"); location= '../index.php</script>'";
+		echo ("<script LANGUAGE='JavaScript'> window.alert('Email already exit : Please give another unique email');window.location.href='../index.php';</script>");
+
+
+		
 	}	
 	} else {
 		$_SESSION['fail'] = 'Missing params, failed to signup!';
@@ -123,3 +133,5 @@ function validateLoginRequest() {
 		return false;
 	}
 }
+
+
