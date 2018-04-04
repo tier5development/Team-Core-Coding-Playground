@@ -78,8 +78,20 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+
+
                     @auth
                         <a href="{{ route('logout') }}">Logout</a>
+
+                          <form action="/message_to" method="post">
+                          {{csrf_field()}}
+               To:<input type="text" name="title">
+               Message:<input type="text" name="body">
+               <input type="submit" name="Submit">
+                 </form>
+
+
+
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>

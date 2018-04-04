@@ -45,8 +45,7 @@ Route::get('/logout',
         ]);
 
  
- //Route::post('/forgotpw','loginController@forgetPassword');//forget password
-
+ 
 
  Route::post('/resetP','loginController@resetPassword');//reset password
 
@@ -70,14 +69,7 @@ Route::post('/loginuser','loginController@login');
 Route::post('/forgotpw','loginController@save_data');
 
 
-// Route::get('/resetP/{token}', [
-// 	'uses'	=> 'loginController@forgot',
-// 	'as'	=>	'auth.reset'
-// ]);
 
-
-
-// Route::post('/resetP','loginController@reset');
 
 
 Route::get('/resetPassword', [
@@ -86,9 +78,16 @@ Route::get('/resetPassword', [
           ]);
 
 
-       
 
+Route::get('/posting', [
+	'uses'	=> 'PostController@show',
+	'as'	=>	'show.post'
+]);
 
+Route::post('/message_to', [
+	'uses'	=> 'PostController@message_given',
+	'as'	=>	'display.post'
+]);
 
 
 

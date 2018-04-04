@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('mobile');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
