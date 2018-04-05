@@ -68,7 +68,7 @@
 }
 
 .rowTest{
- background-color:pink;
+ background-color:pink!important;
 }
 span.psw {
     float: right;
@@ -89,7 +89,7 @@ span.psw {
     </head>
 <body>
 
-<div class="flex-center position-ref ">
+<div class="flex-center position-ref full-height">
 <div class="top-right links">
                 
                     <br><br>
@@ -100,45 +100,36 @@ span.psw {
                         <a href="log_in">Login</a>
                         <a href="sign_in">Register</a>
                     @endif
-
-                    
-                    
                     
                     
                 </div>
-<div style="background-color:#FF0000;width:35%;height:auto;" class="rowTest"><div>
+<div style="background-color:#FF0000;width:35%;height:630px;" class="rowTest"><div>
   
 @extends('chunks')
-    
+  <form method="PUT" action=["/editPost" , $view->id]>
+  {{ csrf_field() }}
+  @foreach($post as $view)
     <center>
     <div style="height: 300px; width: 180px; background-image:url({{ asset('image/laravel.png') }});"></div><br><br>
+    <b>Title :</b> <input type="text" name="title" value="{{$view->title}}" ><br><br>
+    <b>Description :</b> <textarea type="text" name="body" value="{{$view->body}}" ></textarea><br><br>
+   
     
-    @foreach($post as $view)
+    <input type="submit" name="submit" value="Edit"><br></center>
+    @endforeach    
+        </div></div>
 
-      <p><h5>Title : {{$view->title}}</h5>
-      <h6>Description : {{$view->body}}</h6>
-      <footer class="blockquote-footer">Posted by:
-          <cite>{{$view->email}}</cite>
-                          
-                                  
-      </footer></p>
+    @if(count($errors))
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-      <form method="POST" action="/delete">
-        {{ csrf_field() }}
-          @if($view->email==Auth::user()->email)
-              <input type="hidden" name="delid" value='{{$view->id}}' required>
-              <center><input type="submit" name="submit2" value="Delete"></center>
-          
-          @endif
-      </form>
-
-      <hr><br>
-    @endforeach
-
-    </center></div></div>
-
-
-     
+     </form>
  
  
 

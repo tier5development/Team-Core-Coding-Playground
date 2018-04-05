@@ -92,4 +92,8 @@ Route::get('displaypost',[
 
 
 
+Route::post('delete','PostController@deletePost');
+
+
+
 });
