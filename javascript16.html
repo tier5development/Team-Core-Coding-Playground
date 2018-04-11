@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p id="demo"></p>
+<button type="button" onclick="load("anirban.txt" ,myfunction)">click</button>
+
+<script>
+	function load(url , CFunction){
+		var xmlhttp = new xmlHttpRequest();
+		xmlhttp.onreadystatechange=function(){
+			if(this.readyState == 4 && this.status == 200)
+			{
+				document.getElementById("demo")=xmlhttp.responeText;
+				CFunction(this);
+			}
+		};
+		xmlhttp.open("GET",url , true);
+		xmlhttp.send();
+	}
+	function CFunction()
+	{
+		/*document.getElementById("demo").innerHTML=xmlhttp.responeText;*/
+		var xmldoc=this.responeText;
+		var txt="";
+		var x =xmldoc.getElementByTagName("ARTIST");
+		var i ;
+		for(i = 0 ; i <x.length ; i ++ )
+		{
+			txt =txt + x[i].childNode[0].nodeValue ;
+		}
+		document.getElementById("demo").innerHTML=txt;
+	}
+	
+</script>
+</body>
+</html>

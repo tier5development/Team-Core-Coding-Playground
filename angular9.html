@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>angular js</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body ng-app="myApp">
+<p>First color {{color}}</p>
+<div ng-controller="myCtl">
+	<p>Second color {{color}}</p>
+</div>
+<script type="text/javascript">
+	var app = angular.module("myApp",[]);
+	app.run(function($rootscope){
+		$rootscope.color="bule";
+	});
+	app.controller("myCtl",function($scope){
+		$scope.color="red";
+	});
+</script>
+</body>
+</html>

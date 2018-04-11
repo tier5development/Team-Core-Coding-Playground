@@ -8,7 +8,10 @@
 }
 
 function ex()
-{
+{ 
+
+
+	
 	var x="<?php display(); ?>";
 	return x;
 }

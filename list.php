@@ -7,6 +7,7 @@ $action=$_POST["action"];
 elseif (isset($_GET["action"])) {
 	$action=$_GET["action"];
 }
+
 switch ($action) {
 	case 'bot':
 		$data=$_GET;
