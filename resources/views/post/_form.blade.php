@@ -30,6 +30,9 @@
       <div>
       	<label for="photo">Upload a photo for this post</label><br>
       	<input type="file" name="photo"  id="photo" class="form-control" >
+        @if (isset($edit) && $edit == '1' && ($post->photo != 'default.jpg'))
+          {{ isset ($post) ? 'Already Uploaded' : 'Upload a new' }}
+        @endif
       </div><br>
       <div><br>
       	<button type="submit" class="btn btn-success">{{(isset($edit) && $edit == '1') ? 'Update': 'Post'}}</button>

@@ -84,6 +84,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        //dd('fds');
         $post = Posts::findOrFail(base64_decode($id));
         return view('post.editPost',compact('post'));
     }

@@ -34,6 +34,23 @@ Route::middleware(['authorize'])->group(function () {
 	Route::post('/registerNewUser','User\UserController@store');
 	Route::post('/login','User\UserController@authenticate');
 
+	//Reset Password view
+	Route::get('/forgotUserPassword', function(){
+		return view('users.forgotPassword');
+	});
+
+	//Create the token
+	Route::post('/forgotPassword','User\PasswordResetController@index');
+
+	//Link from the user mail
+	Route::get('/resetPassword',[
+		'uses'	=>	'User\PasswordResetController@reset',
+		'as'	=>	'reset.password'
+	]);
+
+	//Create a new password for user
+	Route::post('/newPasswordCreator','User\PasswordResetController@newPassword');
+
 });
 
 	

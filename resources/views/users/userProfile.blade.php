@@ -67,10 +67,17 @@
       <div class="card-header">
         No Post
       </div>
-      <div class="card-body">
-        <h4 class="card-title">{{$profile->firstName}} has no post.</h4>
-        <p class="card-text">If you know {{$profile->firstName}} personally then encourage to post in social blog !</p>
-      </div>
+      @if($profile->email == Auth::user()->email)
+          <div class="card-body">
+            <h4 class="card-title">You have no post.</h4>
+            <p class="card-text">Create a new post in socialBolg !</p>
+          </div>
+      @else
+          <div class="card-body">
+            <h4 class="card-title">{{$profile->firstName}} has no post.</h4>
+            <p class="card-text">If you know {{$profile->firstName}} personally then encourage to post in social blog !</p>
+          </div>
+      @endif
     </div>
   </center>
 @endforelse

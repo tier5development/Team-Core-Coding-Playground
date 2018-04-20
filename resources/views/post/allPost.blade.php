@@ -47,7 +47,7 @@
 						    @endif
 						</div>
 					</div>
-					<hr style="height:4px;background-color:#457812;" />
+					<hr style="height:4px;background-color:#3f4147;" />
 				@empty
 					<center> No Posts </center>
 				@endforelse

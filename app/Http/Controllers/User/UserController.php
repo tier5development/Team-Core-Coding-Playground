@@ -4,12 +4,14 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\User;
 use Image;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\LoginRequest;
 
-//use App\Http\Requests\StoreBlogPost;
+
+
 
 class UserController extends Controller
 {
@@ -56,12 +58,13 @@ class UserController extends Controller
                 Image::make($photo)->save(public_path('images/profilePhotos/' . $photoname));
                 $user->profilePhoto = $photoname;
             }
-            dd("saved");
+            dd("not saved remove dd");
             $user->save();
             return redirect()->route('user.home')->with(['success' => true, 'message' => "Successfully Registered."]);
         }
         catch(Exception $exception)
         {
+            //return redirect()->back()->with(['success' => true, 'message' => $exception]);
             return $exception;
         }
     }
@@ -114,7 +117,7 @@ class UserController extends Controller
     /*
      * User Login
      */
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $request)
     {
         try
         {
@@ -126,7 +129,7 @@ class UserController extends Controller
             }
             else 
             {
-                return redirect()->back()->with(['success' => false, 'message' => "Invalid credentials "]);    
+                return view('users.login')->with(['success' => false, 'message' => "Invalid credentials "]);    
             }
         }
 
