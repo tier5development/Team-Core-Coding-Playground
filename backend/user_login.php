@@ -13,7 +13,7 @@ if($_POST){
 	}else{
 		$password=test_input($_POST['password']);
 	}
-	$sql="SELECT * FROM `admin_registration` WHERE `email` LIKE '".$email."' AND `password` LIKE '".$password."'";
+	$sql="SELECT * FROM `user_registration` WHERE `email` LIKE '".$email."' AND `password` LIKE '".$password."'";
 	echo $sql ;
 	$result = mysqli_query($conn,$sql);
 	print_r($result);
@@ -21,10 +21,11 @@ if($_POST){
   $active = $row['active'];*/
   $count = mysqli_num_rows($result);
 	if($count == 1){
-	header("Location:http://".$_SERVER['SERVER_NAME']."/ekart/backend/admin.php");
+	/*header("Location:http://"$_SERVER['SERVER_NAME']"/ekart/backend/admin.php");*/
+	echo "success";
 	}
 	else{
-		/*header("Location: http://localhost/ekart/backend/admin_registration.php");*/
+		/*header("Location: http://$_SERVER['SERVER_NAME']/ekart/backend/admin_registration.php");*/
 		echo "error";
 	}
 
@@ -40,10 +41,10 @@ function test_input($data){
 <!DOCTYPE>
 <html>
 <head>
-	<title></title>
+	<title>User_login</title>
 </head>
 <body>
-<h3>Admin_login</h3>
+<h3>User_login</h3>
 <form id="form1" method="post" action="">
 	<br><br><b>Email</b><input type="text" name="email" placeholder="Email" required>
 	<br><br><b>Password</b><input type="password" name="password" placeholder="Password" required>

@@ -17,7 +17,11 @@ if($_POST){
 	}else{
 		$password=test_input(md5($_POST['password']));
 	}
-	$sql="INSERT INTO admin_registration (name,email,password) VALUES ('$name', '".mysqli_real_escape_string($conn,$email)."', '".mysqli_real_escape_string($conn,$password)."')";
+	$sql="INSERT INTO user_registration (name,email,password) VALUES ('$name', '".mysqli_real_escape_string($conn,$email)."', '".mysqli_real_escape_string($conn,$password)."')";
+	$sql1="SELECT * FROM `user_registration` WHERE `email` LIKE '".$email."'";
+	$result=mysqli_query($sql1);
+	$count=mysqli_num_rows($result);
+	if($count) 
 	if(mysqli_query($conn,$sql)){
 	/*header("Location: ekart/backend/admin.php");*/
 

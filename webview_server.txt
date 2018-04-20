@@ -1,2 +1,0 @@
-sever for webview ssh root@208.68.37.186
-

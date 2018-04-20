@@ -3,8 +3,11 @@ session_start();
 require_once(__DIR__.'/../database/conn.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-$pro=$_SESSION["example"];
+/*$pro=$_SESSION["example"];
+print_r($pro);
+exit();*/
 if($_POST){
+	$product_name=$_SESSION["$product_name"];
 	if(empty($_POST['shop_name'])){
 		$shop_name_empty="Field missing";
 	}
@@ -31,13 +34,26 @@ if($_POST){
 	}
 	$sql="INSERT INTO shop (name,address,phone,product_barcode) VALUES ('$shop_name', '$shop_address
 	', '$shop_phone','$product_barcode')";
-	if (mysqli_query($conn,$sql)){
-	/*echo '<a href="'http:// $_SERVER['SERVER_NAME']/ekart/backend/shop.php'"/';*/	
+	$sql1="INSERT INTO shop_product (shop,product,barcode) VALUES ('$shop_name','$product','$product_barcode')";
+	if(empty($product)){
+	mysqli_query($conn,$sql);
+	/*echo "<button onclick= \"location.href='http://$_SERVER['SERVER_NAME']/ekart/backend/shop_show.php'\">show</button>";*/
+	echo "success";	
+	}
+	else{
+	mysqli_query($conn,$sql);
+	mysqli_query($conn,$sql1);
+	/*echo "<button onclick= \"location.href='http://$_SERVER['SERVER_NAME']/ekart/backend/shop_show.php'\">show</button>";	*/
+	echo "error";
+	}
+/*	if (mysqli_query($conn,$sql)){
+		mysqli_query($conn,$sql1);
+	echo '<a href="'http:// $_SERVER['SERVER_NAME']/ekart/backend/shop.php'"/';	
 	echo "<button onclick= \"location.href='http://localhost/ekart/backend/shop_show.php'\">show</button>";
 	}
 	else{
 		echo "error";
-	}
+	}*/
 }
 function test_input($data){
 $data=trim($data);
@@ -47,7 +63,7 @@ return $data;
 }
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <body>
 <h3>ADD SHOP WITH IT'S PRODUCT</h3>
@@ -59,4 +75,4 @@ return $data;
 	<br><br><b>Submit</b><input type="submit"  value="submit">
 </form>
 </body>
-</html>
+</html> -->
