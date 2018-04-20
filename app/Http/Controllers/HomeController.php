@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Image;
 
 
 class HomeController extends Controller
@@ -70,12 +71,22 @@ class HomeController extends Controller
             $user = User::findOrFail($request->id);
             // dd(0);
             $this->validate ($request,[
+                     'profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                     'name'=>'required',
                     'email'=>'required|email|required|unique:users,id,?????',
                     'address' => 'required|string|max:255',
                     'zipcode' => 'required|integer|digits:6',
                     'phone' => 'required|integer|digits:10',
                 ]);
+            if($request->hasfile('profile'))
+            {
+                $profile = $request->file('profile');
+                $profilename =time().'-'.$profile->getClientOriginalExtension();
+                Image::make($profile)->save(public_path('images/testLaravel/' . $profilename));
+                $user->profile = $profilename;
+            }
+            // $user->profile = $profilename;
+
             $user->name = $request->name;
             $user->email = $request->email;
             $user->address = $request->address;

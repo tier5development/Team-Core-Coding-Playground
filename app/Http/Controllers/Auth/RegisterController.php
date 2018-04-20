@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Image;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +52,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            // 'profile' => 'required',
+            'profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'address' => 'required|string|max:255',
@@ -68,7 +71,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // print "<pre>";
+        // print_r($_FILES);
+
+        
+        if(isset($_FILES['profile']))
+        {    
+            $profilename =time().'-'.$_FILES['profile']['name'];
+            //Image::make($profile)->save(public_path('images/testLaravel/' . $profilename));
+            copy($_FILES['profile']['tmp_name'], 'images/testLaravel/'.$profilename);
+            //$data->profile = $profilename;
+        }
+
         return User::create([
+            'profile' => $profilename,
             'name' => $data['name'],
             'email' => $data['email'],
             'address' => $data['address'],

@@ -11,6 +11,7 @@
               <table class="table">
                   <thead>
                   <tr>
+                      <th class="text-center" >#</th>
                       <th class="text-center" >NAME</th>
                       <th class="text-center" >Email</th>
                       <th class="text-center" >Address</th>
@@ -23,7 +24,12 @@
                   @if(isset($users))   
                     @forelse($users as $user)
                           <tr>
-                              
+                              <td>
+                                  <div class="text-center">
+                                      <img src="{{ asset('images/testLaravel/' .$user->profile)}}" class="rounded float-left" height="40" width="40">
+                                  </div>
+                              </td>
+
                               <td>
                                   <div class="text-center">
                                       {{$user->name}}

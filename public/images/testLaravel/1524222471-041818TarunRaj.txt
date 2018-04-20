@@ -1,0 +1,25 @@
+Name : Tarun Raj
+Date : 04/19/2018
+
+
+
+Project: R&D on Laravel
+work flow : 
+
+[*] task #  1:
+			title 	        : R&D on Laravel 
+			desc	        :  implemented some functionality of laravel in the demo project 
+			teamwork    	:  N/A
+			Git 	        :  N/A
+			branch	        :  N/A
+			time taken   	:  7hr 17mins
+			status	        :  paused
+
+Tomorrow :
+
+		title 	        : R&D on laravel
+		
+		ETA : 7 hrs
+	 
+		Blockers : N/A
+
