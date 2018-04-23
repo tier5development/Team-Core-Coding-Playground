@@ -42,7 +42,7 @@
 				    <br>
 				    <button type="submit" class="btn btn-primary">Submit</button><br>
 				    <div class="form-group">
-				  		<label for="login">Already has an account ?</label><a href="/l"><input type="button" name="login" class="btn btn-success " value="Login"></a>
+				  		<label for="login">Already has an account ?</label><a href="{{ route('user.login') }}"><input type="button" name="login" class="btn btn-success " value="Login"></a>
 				  	</div>
 				  	</fieldset>
 				</form>

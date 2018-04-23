@@ -23,11 +23,13 @@ Route::get('/home', [
 
 Route::middleware(['authorize'])->group(function () {
 
-	Route::get('/l', function (){
-		return view('users.login');
-	});
+	//Login Route
+	Route::get('/login',[
+		'uses'	=>	'User\UserController@login',
+		'as'	=>	'user.login'
+	]);
 
-	Route::get('/r', function (){
+	Route::get('/register', function (){
 		return view('users.register');
 	});
 

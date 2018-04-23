@@ -36,8 +36,8 @@
 		          @endif
 			</span>
 			<button type="submit" class="btn btn-warning ">Reset</button><br>
-			<a href="/l"><input type="button" name="login" class="btn btn-success float-left" value="Login">
-			<a href="/r"><input type="button" name="register" class="btn btn-info float-right" value="Register"></a>
+			<a href="{{route('user.login')}}"><input type="button" name="login" class="btn btn-success float-left" value="Login">
+			<a href="/register"><input type="button" name="register" class="btn btn-info float-right" value="Register"></a>
 		  </div>
 		</div>
 	</form>

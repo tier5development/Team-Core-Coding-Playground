@@ -115,7 +115,15 @@ class UserController extends Controller
     }
 
     /*
-     * User Login
+     * Login view
+     */
+    public function login()
+    {
+        return view('users.login');
+    }
+
+    /*
+     * User Login Authenticate
      */
     public function authenticate(LoginRequest $request)
     {
@@ -129,7 +137,7 @@ class UserController extends Controller
             }
             else 
             {
-                return view('users.login')->with(['success' => false, 'message' => "Invalid credentials "]);    
+                return redirect()->route('user.login')->with(['success' => false, 'message' => "Invalid credentials "]);    
             }
         }
 

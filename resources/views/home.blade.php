@@ -29,8 +29,8 @@
 						  </div>
 						</div>
 					@else
-						<a href="{{url('/l')}}"><button type="button" class="btn btn-success">Login</button></a>
-						<a href="{{url('/r')}}"><button type="button" class="btn btn-primary">Register</button></a>
+						<a href="{{ route('user.login') }}"><button type="button" class="btn btn-success">Login</button></a>
+						<a href="{{url('/register')}}"><button type="button" class="btn btn-primary">Register</button></a>
 					@endif
 				</center>
 			</div>

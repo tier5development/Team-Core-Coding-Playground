@@ -42,6 +42,8 @@ class PasswordResetController extends Controller
           	$message->from('work@tier5.us','SocialBlog');
           	$message->to($request->email)->subject('Reset your password');
           });
+
+            dd("Password Reset mail sent to your email.");
     	}
     	catch(Exception $exception)
     	{
@@ -91,7 +93,7 @@ class PasswordResetController extends Controller
     			$newPassword->password 	=	Hash::make($request->password);
     			$newPassword->update();
     			PasswordReset::where('token',$request->token)->delete();
-    			return view('users.login');
+    			return redirect()->route('user.login')->with(['success' => true, 'message' => "Password changed successfully. Please login !!!"]);
     		}
     		else
     		{
