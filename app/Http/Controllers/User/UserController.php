@@ -58,7 +58,6 @@ class UserController extends Controller
                 Image::make($photo)->save(public_path('images/profilePhotos/' . $photoname));
                 $user->profilePhoto = $photoname;
             }
-            dd("not saved remove dd");
             $user->save();
             return redirect()->route('user.home')->with(['success' => true, 'message' => "Successfully Registered."]);
         }

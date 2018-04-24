@@ -151,6 +151,10 @@ class PostController extends Controller
             $post = Posts::findOrFail(base64_decode($id));
             if ($post)
             {
+                if($post->author == Auth::user()->email)
+                {
+                    return redirect()->route('all.post')->with(['success' => false, 'message' => "You cannot like your own post "]); 
+                } 
                 $post->increment('likes');
                 return redirect()->route('all.post');
             }
