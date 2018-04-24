@@ -1,6 +1,7 @@
 
-<footer class="footer">
-  <div class="container">
+
+<footer class="page-footer font-small blue pt-4 mt-4">
+  <div class="container-fluid text-center text-md-left">
     <span class="text-muted">&copy 2018 Social Blog</span>
   </div>
 </footer>

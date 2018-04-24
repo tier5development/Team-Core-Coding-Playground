@@ -19,7 +19,7 @@
 			<div class="inner">
 				<center>
 					@if(Auth::check())
-						<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+						<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
 						  <div class="card-header">Welcome</div>
 						  <div class="card-body">
 						    <h4 class="card-title">{{Auth::user()->firstName}}</h4>
@@ -36,6 +36,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

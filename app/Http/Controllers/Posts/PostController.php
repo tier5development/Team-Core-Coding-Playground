@@ -44,7 +44,7 @@ class PostController extends Controller
     {
         try
         {
-            $post               =new Posts();
+            $post               = new Posts();
             $post->title        = $request->title;
             $post->description  = $request->description;
             $post->author       = Auth::user()->email;

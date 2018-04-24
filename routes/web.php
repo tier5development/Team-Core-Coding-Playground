@@ -87,7 +87,7 @@ Route::middleware(['unAuthorize'])->group( function () {
 		Route::get('/edit/{post_id}','Posts\PostController@edit');
 
 		//Delete the post
-		Route::delete('delete/{id}' ,[
+		Route::get('delete/{id}' ,[
 			'uses'=>'Posts\PostController@destroy',
 			'as'=>'post.destroy'
 		]);

@@ -64,8 +64,8 @@ class UserController extends Controller
         }
         catch(Exception $exception)
         {
-            //return redirect()->back()->with(['success' => true, 'message' => $exception]);
-            return $exception;
+           return redirect()->route('user.home')->with(['success' => false, 'message' => $exception]);
+           // return $exception;
         }
     }
 

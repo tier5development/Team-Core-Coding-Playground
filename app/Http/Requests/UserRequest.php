@@ -24,11 +24,11 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstName'         =   'required',
-            'lastName'          =   'required',
-            'email'             =   'required|unique:users',
-            'password'          =   'required|min:8',
-            'confirmPassword'   =   'required|same:password'
+            'firstName'         =>   'required',
+            'lastName'          =>   'required',
+            'email'             =>   'required|unique:users',
+            'password'          =>   'required|min:8',
+            'confirmPassword'   =>   'required|same:password'
         ];
     }
 
@@ -46,7 +46,7 @@ class UserRequest extends FormRequest
             'email.unique'              => 'This email is already taken',
             'password.required'         => 'Please provide a password',
             'password.min'              => 'Password should be minimum 8 character long',
-            'confirmPassword.required'  => 'Please provide a proper password',
+            'confirmPassword.required'  => 'Please provide a confirm password',
             'confirmPassword.same'      => 'Password and confirm password should be same'
         ];
     }
