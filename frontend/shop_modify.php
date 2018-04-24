@@ -21,7 +21,7 @@
       <label for="product_barcode">Product_Barcode</label>
       <input type="number" class="form-control" id="product_barcode" placeholder="product_barcode" required autocomplete="off" name="product_barcode">
     </div>
-    <input type="hidden" name="functionality" value="shop_modify">
+    <input type="hidden" name="functionality" value="show_modify">
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>

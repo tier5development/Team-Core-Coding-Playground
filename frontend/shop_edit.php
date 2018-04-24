@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,23 +13,24 @@
 
 <div class="container">
   <h2>ADD SHOP WITH IT'S PRODUCT</h2>
-  <form id="form1" method="post" action="backend/shop.php" >
+  <form id="form1" method="post" action="../backend/functionality.php" >
     <div class="form-group">
       <label for="shop_name">Shop_Name:</label>
-      <input type="text" class="form-control" id="shop_name" placeholder="shop_name" name="shop_name">
+      <input type="text" class="form-control" id="shop_name" placeholder="shop_name" required autocomplete="off" name="shop_name">
     </div>
     <div class="form-group">
       <label for="shop_address">Shop_Address</label>
-      <input type="text" class="form-control" id="shop_address" placeholder="shop_address" name="shop_address">
+      <input type="text" class="form-control" id="shop_address" placeholder="shop_address" required autocomplete="off" name="shop_address">
     </div>
     <div class="form-group">
       <label for="shop_phone">Shop_Phone_Number</label>
-      <input type="number" class="form-control" id="shop_phone" placeholder="shop_phone" name="shop_phone">
+      <input type="number" class="form-control" id="shop_phone" placeholder="shop_phone" required autocomplete="off" name="shop_phone">
     </div>
     <div class="form-group">
-      <label for="product_barcode">Shop_Phone_Number</label>
-      <input type="number" class="form-control" id="product_barcode" placeholder="product_barcode" name="product_barcode">
+      <label for="product_barcode">Product_Barcode</label>
+      <input type="number" class="form-control" id="product_barcode" placeholder="product_barcode" required autocomplete="off" name="product_barcode">
     </div>
+    <input type="hidden" name="functionality" value="shop_edit">
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>
