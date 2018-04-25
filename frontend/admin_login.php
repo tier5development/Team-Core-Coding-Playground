@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Admin Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -33,17 +33,3 @@
 
 
 
-<!-- <!DOCTYPE>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<h3>Admin_login</h3>
-<form id="form1" method="post" action="">
-	<br><br><b>Email</b><input type="text" name="email" placeholder="Email" required>
-	<br><br><b>Password</b><input type="password" name="password" placeholder="Password" required>
-	<br><br><input type="submit" name="submit">
-</form>
-</body>
-</html> -->

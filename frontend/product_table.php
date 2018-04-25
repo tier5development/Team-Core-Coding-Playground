@@ -8,6 +8,7 @@ $show_product=show_product($conn);
 <!DOCTYPE html>
 <html>
 <head>
+<title>Product Details</title>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
@@ -43,26 +44,3 @@ $show_product=show_product($conn);
 </body>
 </html>
 
-
-<!-- <table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Address</th>
-			<th colspan="2">Action</th>
-		</tr>
-	</thead>
-	
-	<?php while ($row = mysqli_fetch_array($results)) { ?>
-		<tr>
-			<td><?php echo $row['name']; ?></td>
-			<td><?php echo $row['address']; ?></td>
-			<td>
-				<a href="index.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a>
-			</td>
-			<td>
-				<a href="server.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
-			</td>
-		</tr>
-	<?php } ?>
-</table> -->

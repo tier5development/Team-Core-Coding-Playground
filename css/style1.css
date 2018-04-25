@@ -1,0 +1,8 @@
+div.wpforms-container-full .wpforms-form button[type=submit] {
+   background-image: url(http://example.com/youricon.svg);
+   background-repeat: no-repeat;
+   background-position: center;
+   color: transparent; /* Hide button text */
+   padding: 20px 70px;
+   background-color: #00f3ff;
+}
