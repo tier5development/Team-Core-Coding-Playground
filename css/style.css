@@ -52,6 +52,13 @@ form {
     border: none;
     border-radius: 5px;
 }
+.back_btn{
+    text-decoration: none;
+    padding: 2px 5px;
+    color: white;
+    border-radius: 3px;
+    background: #800000;
+}
 .edit_btn {
     text-decoration: none;
     padding: 2px 5px;

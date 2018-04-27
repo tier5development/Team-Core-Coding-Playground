@@ -4,6 +4,9 @@ require_once(__DIR__.'/../backend/functionality.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 $show_product=show_product($conn);
+$num=$_SESSION["num"];
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +18,7 @@ $show_product=show_product($conn);
 <label align= "center"><h3>Product Table</h3></label>
 <table>
 	<tr>
+		<th>Product_ID</th>
 		<th>Barcode</th>
 		<th>Name</th>
 		<th>Price</th>
@@ -23,11 +27,11 @@ $show_product=show_product($conn);
 	</tr>
 	<tr>
 	<?php if(!empty($show_product)){?>
-
-		<td><?php echo $show_product['barcode']; ?></td>
-		<td><?php echo $show_product['name']; ?></td>
-		<td><?php echo $show_product['price']; ?></td>
-		<td><?php echo $show_product['brand']; ?></td>
+	<?php for($i=0;$i<$num;$i++){?>
+		<td><?php echo $show_product[$i]['id']; ?></td>
+		<td><?php echo $show_product[$i]['name']; ?></td>
+		<td><?php echo $show_product[$i]['price']; ?></td>
+		<td><?php echo $show_product[$i]['brand']; ?></td>
 		<td>
 				<a href="product.php" class="insert_btn" >Insert</a></td>
 		<td>
@@ -36,6 +40,8 @@ $show_product=show_product($conn);
 		<td>
 				<a href="../backend/functionality.php?functionality=<?php echo "product_modify";?>&barcode=<?php echo $show_product['barcode'];?>" class="del_btn">Delete</a>
 		</td>
+		<tr></tr>
+		<?php 	 }  ?>
 	<?php }else{ ?>
 		<td colspan="7">NO data found </td>
 	<?php } ?>
