@@ -4,6 +4,7 @@ require_once(__DIR__.'/../backend/functionality.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 $show_product=show_product_detail($conn);
+$num=$_SESSION["num"];
 
 ?>
 <!DOCTYPE html>
@@ -34,13 +35,16 @@ $show_product=show_product_detail($conn);
 	</tr>
 	<tr>
 	<?php if(!empty($show_product)){?>
-		<td><?php echo $show_product['name']; ?></td>
-		<td><?php echo $show_product['price']; ?></td>
-		<td><?php echo $show_product['brand']; ?></td>
-		<td><?php echo $show_product['barcode']; ?></td>
-		<td><?php echo $show_product['name']; ?></td>
-		<td><?php echo $show_product['address']; ?></td>
-		<td><?php echo $show_product['phone']; ?></td>
+	<?php for($i=0;$i<$num;$i++){?>
+		<td><?php echo $show_product[$i]['name']; ?></td>
+		<td><?php echo $show_product[$i]['price']; ?></td>
+		<td><?php echo $show_product[$i]['brand']; ?></td>
+		<td><?php echo $show_product[$i]['barcode']; ?></td>
+		<td><?php echo $show_product[$i]['name']; ?></td>
+		<td><?php echo $show_product[$i]['address']; ?></td>
+		<td><?php echo $show_product[$i]['phone']; ?></td>
+		<tr></tr>
+	<?php }?>
 	<?php }else{ ?>
 		<td colspan="6">NO data found </td>
 	<?php } ?>

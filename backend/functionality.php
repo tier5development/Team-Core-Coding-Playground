@@ -35,10 +35,11 @@ switch ($functionality) {
 		show_modify($conn,$phone);
 		break;
 	case 'product_modify':
-	 	if($_GET['barcode']){
+	 	if($_GET['barcode'] && $_GET['product_id']){
 	 		$barcode=$_GET['barcode'];
+	 		$product_id=$_GET['product_id'];
 	 	}
-	 	product_modify($conn,$barcode);
+	 	product_modify($conn,$barcode,$product_id);
 	 	break;
 	case 'product_edit':
 	 	product_edit($conn);
@@ -121,8 +122,8 @@ function shop($conn=null){
 		$shop_name=$_POST['shop_name'];
 		$shop_address=$_POST['shop_address'];
 		$shop_phone=$_POST['shop_phone'];
-		$product_barcode=$_POST['product_barcode'];
-		$sql="INSERT INTO shop (name,address,phone,product_barcode) VALUES ('$shop_name', '$shop_address', '$shop_phone','$product_barcode')";
+		$_SESSION["phone_update"]=$shop_phone;
+		$sql="INSERT INTO shop (name,address,phone) VALUES ('$shop_name', '$shop_address', '$shop_phone')";
 		if(mysqli_query($conn,$sql)){
 			$shop_id=mysqli_insert_id($con);
 			$_SESSION["last_inserted_id_shop"]=$shop_id;
@@ -141,15 +142,18 @@ function shop($conn=null){
 function product($conn=null){
 	if(ValidateProduct()){
 		$product_barcode=$_POST['product_barcode'];
+		$_SESSION["update_product_barcode"]=$product_barcode;
 		$product_name=$_POST['product_name'];
 		$_SESSION["product_name"]=$product_name;
 		$product_price=$_POST['product_price'];
 		$product_brand=$_POST['product_brand'];
 		$shop_id=$_POST['shop_id'];
+		$_SESSION["shop_id"]=$shop_id;
 		$sql="INSERT INTO product (shop_id,barcode,name,price,brand) VALUES ('$shop_id','$product_barcode','$product_name', '$product_price','$product_brand')";
 		
 		if (mysqli_query($conn,$sql)){
 			 $last_id = mysqli_insert_id($conn);
+			 $_SESSION["product_id"]=$last_id;
 			 $sql1="INSERT INTO shop_product (shop_id , product_id ) VALUES ('$shop_id' ,'$last_id')";
 			 if(mysqli_query($conn,$sql1)){
 			header('location:../frontend/product_table.php'); 	
@@ -186,11 +190,18 @@ function show_modify($conn=null,$phone){
 	}
 	$conn=null;
 }
-function product_modify($conn=null,$barcode){
-	if(ValidateProductModify($barcode)){
-		$sql="DELETE FROM product  WHERE barcode = '".$barcode."'";
+function product_modify($conn=null,$barcode,$product_id){
+	if(ValidateProductModify($barcode,$product_id)){
+		$sql="DELETE FROM shop_product WHERE product_id ='".$product_id."'";
+		$sql1="DELETE FROM product  WHERE barcode = '".$barcode."'";
 		if(mysqli_query($conn,$sql)){
-			header('location:../frontend/product_table.php');
+			if(mysqli_query($conn,$sql1)==true){
+				header('location:../frontend/product_table.php');	
+			}
+			else{
+				mysqli_query($conn,$sql);
+			header('location:../frontend/product_table.php');		
+			}
 		}
 		else{
 			echo "error";
@@ -207,8 +218,8 @@ function shop_edit($conn){
 		$shop_name=$_POST['shop_name'];
 		$shop_address=$_POST['shop_address'];
 		$shop_phone=$_POST['shop_phone'];
-		$product_barcode=$_POST['product_barcode'];	
-		$sql="UPDATE shop SET name='$shop_name', address='$shop_address' , phone='$shop_phone' , product_barcode ='$product_barcode' WHERE product_barcode = '".$product_barcode."'";
+		$phone=$_SESSION["phone_update"];	
+		$sql="UPDATE shop SET name='$shop_name', address='$shop_address' , phone='$shop_phone'  WHERE phone = '".$phone."'";
 		if(mysqli_query($conn,$sql)){
 			header('location:../frontend/shop_table.php');
 		}
@@ -218,7 +229,7 @@ function shop_edit($conn){
 	}
 	else{
 		echo "error_in_validation";
-		header('location:../frontend/shop_table.php');
+		/*header('location:../frontend/shop_table.php');*/
 	}
 	$conn=null;
 }
@@ -226,11 +237,22 @@ function product_edit($conn){
 	if(ValidateProductEdit()){
 		$product_barcode=$_POST['product_barcode'];
 		$product_name=$_POST['product_name'];
+		$_SESSION["product_name"]=$product_name;
 		$product_price=$_POST['product_price'];
 		$product_brand=$_POST['product_brand'];
-		$sql="UPDATE product SET barcode='$product_barcode' , name='$product_name' , price='$product_price' ,brand='$product_brand' WHERE barcode='$product_barcode'";
+		$shop_id=$_POST['shop_id'];
+		$id=$_SESSION["shop_id"];
+		$product_id=$_SESSION["product_id"];
+		$barcode=$_SESSION["update_product_barcode"];
+		$sql="UPDATE product SET barcode='$product_barcode' , name='$product_name' , price='$product_price' ,brand='$product_brand' ,shop_id='$shop_id' WHERE barcode='$barcode'";
+		$sql1="UPDATE shop_product SET shop_id='$shop_id' , product_id ='$product_id'  WHERE shop_id ='$id'";
 		if(mysqli_query($conn,$sql)){
-			header('location:../frontend/product_table.php');
+			if(mysqli_query($conn,$sql1)==true){
+				header('location:../frontend/product_table.php');
+			}
+			else{
+				echo "error";
+			}
 		}
 		else{
 			echo "error";
@@ -267,7 +289,7 @@ function ValidateAdminLogin(){
 	}
 }
 function ValidateShop(){
-		if (isset($_POST['shop_name']) && isset($_POST['shop_address']) && isset($_POST['shop_phone']) && isset($_POST['product_barcode'])) {
+		if (isset($_POST['shop_name']) && isset($_POST['shop_address']) && isset($_POST['shop_phone'])) {
 			return true;
 		}
 	else{
@@ -290,8 +312,8 @@ function ValidateShopModify($phone){
 		return false;
 	}
 }
-function ValidateProductModify($barcode){
-	if (isset($barcode)) {
+function ValidateProductModify($barcode,$product_id){
+	if (isset($barcode) && isset($product_id)) {
 			return true;
 		}
 	else{
@@ -299,7 +321,7 @@ function ValidateProductModify($barcode){
 	}
 }
 function ValidateShopEdit(){
-	if (isset($_POST['shop_name']) && isset($_POST['shop_address']) && isset($_POST['shop_phone']) && isset($_POST['product_barcode'])) {
+	if (isset($_POST['shop_name']) && isset($_POST['shop_address']) && isset($_POST['shop_phone'])) {
 			return true;
 		}
 	else{
@@ -350,10 +372,16 @@ function add_product($conn=null){//query missing
 	$sql="SELECT * FROM shop";
 	$result=mysqli_query($conn,$sql);
 	$show_shop=array();
+	$num=mysqli_num_rows($result);
+	$_SESSION["num"]=$num;
 	if (mysqli_num_rows($result) > 0) {
   	  while($row = mysqli_fetch_assoc($result)){
   	  	array_push($show_shop,$row);
   	  }
+  	}
+  	else{
+  		echo "error";
+  		exit();
   	}
   	return ($show_shop);
 }
@@ -375,9 +403,12 @@ function show_product_detail($conn){
 	$sql="SELECT product.name , product.price , product.brand , product.barcode , shop.name, shop.address, shop.phone  FROM product INNER JOIN shop ON product.shop_id = shop.shop_id";
 	$result=mysqli_query($conn,$sql);
 	$show_product_detail=array();
+	$num=mysqli_num_rows($result);
+	$_SESSION["num"]=$num;
 	if(mysqli_num_rows($result) > 0 ){
 		while($row = mysqli_fetch_assoc($result)){
-		$show_product_detail=$row;
+		//$show_product_detail=$row;
+		array_push($show_product_detail,$row);
 		}
 	}
 	return ($show_product_detail);

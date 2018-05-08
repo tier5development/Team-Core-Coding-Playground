@@ -5,8 +5,6 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 $show_product=show_product($conn);
 $num=$_SESSION["num"];
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +22,9 @@ $num=$_SESSION["num"];
 		<th>Price</th>
 		<th>Brand</th>
 		<th colspan="3">Action</th>
+		<td>
+			  <a href="product.php" class="edit_btn" >Insert</a></td>
+		<td>
 	</tr>
 	<tr>
 	<?php if(!empty($show_product)){?>
@@ -33,12 +34,10 @@ $num=$_SESSION["num"];
 		<td><?php echo $show_product[$i]['price']; ?></td>
 		<td><?php echo $show_product[$i]['brand']; ?></td>
 		<td>
-				<a href="product.php" class="insert_btn" >Insert</a></td>
-		<td>
 				<a href="product_edit.php" class="edit_btn" >Edit</a>
 		</td>
 		<td>
-				<a href="../backend/functionality.php?functionality=<?php echo "product_modify";?>&barcode=<?php echo $show_product['barcode'];?>" class="del_btn">Delete</a>
+				<a href="../backend/functionality.php?functionality=<?php echo "product_modify";?>&barcode=<?php echo $show_product[$i]['barcode'];?>&product_id=<?php echo $show_product[$i]['id'];?>" class="del_btn">Delete</a>
 		</td>
 		<tr></tr>
 		<?php 	 }  ?>

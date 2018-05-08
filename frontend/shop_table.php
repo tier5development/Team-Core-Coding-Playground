@@ -28,7 +28,7 @@ $num=$_SESSION["num"];
 	</tr>
 	<tr>
 	<?php if(!empty($show_shop)){?>
-	<?php for($i=0;$i<=$num;$i++){?>
+	<?php for($i=0;$i<$num;$i++){?>
 		<td><?php echo $show_shop[$i]['shop_id']; ?></td>
 		<td><?php echo $show_shop[$i]['name']; ?></td>
 		<td><?php echo $show_shop[$i]['address']; ?></td>
@@ -40,7 +40,7 @@ $num=$_SESSION["num"];
 				<a href="shop_edit.php" class="edit_btn" >Edit</a>
 		</td>
 		<td>
-				<a href="../backend/functionality.php?functionality=<?php echo "show_modify";?>&phone=<?php echo $show_shop['phone'];?>" class="del_btn">Delete</a>
+				<a href="../backend/functionality.php?functionality=<?php echo "show_modify";?>&phone=<?php echo $show_shop[$i]['phone'];?>" class="del_btn">Delete</a>
 		</td>
 		<tr></tr>
 		<?php }?>

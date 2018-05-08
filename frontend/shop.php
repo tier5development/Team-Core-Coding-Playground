@@ -25,10 +25,6 @@
       <label for="shop_phone">Shop_Phone_Number</label>
       <input type="number" class="form-control" id="shop_phone" placeholder="shop_phone" required autocomplete="off" name="shop_phone">
     </div>
-    <div class="form-group">
-      <label for="product_barcode">Product_Barcode</label>
-      <input type="number" class="form-control" id="product_barcode" placeholder="product_barcode" required autocomplete="off" name="product_barcode">
-    </div>
     <input type="hidden" name="functionality" value="shop">
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

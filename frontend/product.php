@@ -4,8 +4,8 @@ require_once(__DIR__.'/../database/conn.php');
 require_once(__DIR__.'/../backend/functionality.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-$num=$_SESSION["num"];
 $show_shop_id=shop_id($conn);
+$num=$_SESSION["num"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
