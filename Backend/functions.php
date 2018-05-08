@@ -77,32 +77,17 @@ function signin($conn){
     $email=$_POST['email1'];
     $pass=$_POST['pass1'];
     $mdpass=md5($pass);
-    //checking email-ids
-    $sql="SELECT * FROM `registration` WHERE `Email` LIKE '".$email."'";
+    //checking email-id and password pair
+    $sql="SELECT * FROM `registration` WHERE `Email` LIKE '".$email."'AND `Password` = '".$mdpass."'";
     $statement= $conn->prepare($sql);
-    $result=$statement->execute();
+    $statement->execute();
     $count_mail=$statement->fetch();
     if($count_mail !=0){
-        //checking password is present or not
-        echo $sql2="SELECT * FROM `registration` WHERE `Password` ='".$mdpass."'";
-        $statement2= $conn->prepare($sql2);
-        $result2=$statement2->execute();
-        $count_pass=$statement2->fetch();
-        print_r($count_pass);
-        /*if ($count_pass != 0){
-            echo"done";
-            $_SESSION['id'] = $email;
-            $_SESSION['message1']="success";
-            header('Location: ../frontend/dashboard.php');
-        }
-        else{
-            echo "prob1";
-            $_SESSION['message']="Your password is incorrect";
-            header('Location: ../frontend/login.php');
-        }*/
+        $_SESSION['id'] = $email;
+        $_SESSION['message1']="success";
+        header('Location: ../frontend/dashboard.php');
     }
     else{
-        echo "prob2";
         $_SESSION['message']="You are not registerd with us ";
         header('Location: ../frontend/login.php');
     }
