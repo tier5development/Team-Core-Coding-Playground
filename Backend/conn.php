@@ -6,9 +6,10 @@ define("PASSWORD", "root");
 define("DBNAME", "php");
 $conn = new mysqli(HOSTNAME,USERNAME,PASSWORD,DBNAME);
 if($conn -> connect_error){
-    die("Connection lost".$conn->connect_error);
+    die();
+    return false;
 }
 else{
-    echo "Connection successful";
+    return true;
 }
 ?>

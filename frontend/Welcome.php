@@ -4,6 +4,9 @@
 </head>
 <body>
 <h1>welcome</h1>
+<h4><?php session_start();
+    echo $_SESSION['message'];
+    $_SESSION['message']="";?></h4>
 <form method="post" action="../Backend/functions.php">
     First Name: &nbsp <input type="text" name="first_name" ><br>
     Last Name : &nbsp <input type="text" name="last_name"><br>
