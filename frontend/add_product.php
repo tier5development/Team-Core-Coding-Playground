@@ -4,12 +4,13 @@ require_once(__DIR__.'/../database/conn.php');
 require_once(__DIR__.'/../backend/functionality.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-$num=$_SESSION["num"];
-print_r($num);
 $add_product=add_product($conn);
-print_r($add_product);
-exit();
+//print_r($add_product);
+$num=$_SESSION["num"];
+/*print_r($add_product);
+exit();*/
 ?>
+<?php if(isset($_SESSION["page_id"])) { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,18 +25,20 @@ exit();
 <div class="container">
   <h2>ADD PRODUCT</h2>
   <form id="form2" method="post" action="../backend/functionality.php" >
-    <div class="form-group">
-      <label for="shop_id">Shop_Name</label>
-        <select name= "shop_id" id= "shop_id" class="form-control" required>
+   <div class="form-group">
+      <label for="shop_id">Product_Name</label>
+        <select name= "id" id= "id" class="form-control" required>
           <option selected="selected" value="">-- Select an option --</option>
 
-            <?php for($j=0;$j<=$num;$j++){echo "<option value='" . $show_shop_id[$j]['shop_id'] . "'>" . $show_shop_id[$j]['name'] . "</option>";}?>
+            <?php for($j=0;$j<=$num;$j++){echo "<option value='" . $add_product[$j]['shop_id'] . "'>" . $add_product[$j]['name'] . "</option>";}?>
         </select>
     </div>
-    <input type="hidden" name="functionality" value="product">
-    <button type="submit" class="btn btn-default">Submit</button>
+    <input type="hidden" name="shop_id" value="<?= $_GET['id']?>">  
+   <input type="hidden" name="functionality" value="add_shop_product">
+   <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>
-
 </body>
 </html>
+<?php } else {?>
+<?php header('location:../frontend/admin_login.php');  }?>

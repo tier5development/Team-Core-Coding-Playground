@@ -50,12 +50,15 @@ switch ($functionality) {
 	case 'admin_login':
 		admin_login($conn);
 		break;
+	case 'add_shop_product':
+		add_shop_product($conn);
 	default:
 		break;
 }
 function user_registration($conn=null){
 	if(ValidateUserRegistration()){
 		$name=$_POST['name'];
+		$_SESSION['name']=$name;
 		$email=$_POST['email'];
 		$password=$_POST['password'];
 		$sql="INSERT INTO user_registration (name,email,password) VALUES ('$name', '".mysqli_real_escape_string($conn,$email)."', '".mysqli_real_escape_string($conn,$password)."')";
@@ -78,17 +81,19 @@ function user_registration($conn=null){
 }
 function user_login($conn=null){
 	if(ValidateUserLogin()){
+		$user_id=$_POST['user_id'];
 		$email=$_POST['email'];
 		$password=$_POST['password'];
 		$sql="SELECT * FROM `user_registration` WHERE `email` LIKE '".$email."' AND `password` LIKE '".$password."'";
 		$result=mysqli_query($conn,$sql);
 		$count=mysqli_num_rows($result);
 		if($count == 1){
-			echo "success";
+			$_SESSION['user_id']=$user_id;
+			header('location : ../frontend/dashboard.php');
 		}
 		else{
 			echo "wrong information";
-			header('location : ../frontend/user_registration.html');
+			header('location : ../frontend/user_registration.php');
 		}
 	}
 	else{
@@ -98,13 +103,15 @@ function user_login($conn=null){
 }
 function admin_login($conn=null){
 	if(ValidateAdminLogin()){
+		$id=$_POST['page_id'];
 		$email=$_POST['email'];
 		$password=$_POST['password'];
 		$sql="SELECT * FROM `admin_registration` WHERE `email` LIKE '".$email."' AND `password` LIKE '".$password."'";
 		$result=mysqli_query($conn,$sql);
 		$count=mysqli_num_rows($result);
 		if($count == 1){
-			echo "success";
+			/*echo "success";*/
+			$_SESSION["page_id"]=$id;
 			header('location:../frontend/admin.php');
 		}
 		else{
@@ -264,6 +271,18 @@ function product_edit($conn){
 	}
 	$conn =null;
 }
+function add_shop_product($conn=null){
+	extract($_POST);
+	$sql="INSERT INTO `shop_product`(`shop_id`, `product_id`) VALUES ($id ,$shop_id)";
+	if(mysqli_query($conn,$sql))
+	{
+		echo "success";
+	}
+	else{
+		echo "error".mysqli_error($conn);
+	}
+	
+} 
 function ValidateUserRegistration(){
 	if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])){
 		return true;
@@ -273,7 +292,7 @@ function ValidateUserRegistration(){
 	}
 }
 function ValidateUserLogin(){
-	if (isset($_POST['email']) && isset($_POST['password'])) {
+	if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['user_id'])) {
 		return true;
 	}
 	else{
@@ -281,7 +300,7 @@ function ValidateUserLogin(){
 	}
 }
 function ValidateAdminLogin(){
-	if (isset($_POST['email']) && isset($_POST['password'])) {
+	if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['page_id'])) {
 		return true;
 	}
 	else{
@@ -351,7 +370,8 @@ function show_product($conn=null){
   return ($show_product);
 }
 function add_product($conn=null){//query missing 
-	$sql="SELECT product.shop_id product.product_id FROM product UNION ALL SELECT shop_product.shop_id, shop_product.product_id FROM shop_product";
+	/*$sql="SELECT product.shop_id product.product_id FROM product UNION ALL SELECT shop_product.shop_id, shop_product.product_id FROM shop_product";*/
+	$sql="SELECT * FROM product ";
 	$result=mysqli_query($conn,$sql);
 	$add_product=array();
 	$num=mysqli_num_rows($result);
@@ -399,8 +419,9 @@ function shop_id($conn=null){
 	}
 	return ($show_shop_id);
 }
-function show_product_detail($conn){
-	$sql="SELECT product.name , product.price , product.brand , product.barcode , shop.name, shop.address, shop.phone  FROM product INNER JOIN shop ON product.shop_id = shop.shop_id";
+function show_product_detail($conn,$id){
+	 $sql="SELECT product.name , product.price , product.brand , product.barcode , shop.name, shop.address, shop.phone  FROM product AS product LEFT JOIN shop AS shop ON product.shop_id = shop.shop_id WHERE product.shop_id=$id";
+
 	$result=mysqli_query($conn,$sql);
 	$show_product_detail=array();
 	$num=mysqli_num_rows($result);

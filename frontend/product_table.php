@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 $show_product=show_product($conn);
 $num=$_SESSION["num"];
 ?>
+<?php if(isset($_SESSION["page_id"])) { ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,4 +49,6 @@ $num=$_SESSION["num"];
 </table>
 </body>
 </html>
+<?php } else {?>
+<?php header('location:../frontend/admin_login.php');  }?>
 

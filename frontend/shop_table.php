@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 $show_shop=show_shop($conn);
 $num=$_SESSION["num"];
 ?>
+<?php if(isset($_SESSION["page_id"])) {?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +35,10 @@ $num=$_SESSION["num"];
 		<td><?php echo $show_shop[$i]['address']; ?></td>
 		<td><?php echo $show_shop[$i]['phone']; ?></td>
 		<td>	
-				<a href="product_shop.php" class="edit_btn" >Show_Product</a>
+				<a href="product_shop.php?id=<?=$show_shop[$i]['shop_id']?>&name=<?=$show_shop[$i]['name']?>" class="edit_btn" >Show_Product</a>
 		</td>
 		<td>
-				<a href="shop_edit.php" class="edit_btn" >Edit</a>
+				<a href="shop_edit.php?id=<?=$show_shop[$i]['shop_id']?>" class="edit_btn" >Edit</a>
 		</td>
 		<td>
 				<a href="../backend/functionality.php?functionality=<?php echo "show_modify";?>&phone=<?php echo $show_shop[$i]['phone'];?>" class="del_btn">Delete</a>
@@ -51,5 +52,7 @@ $num=$_SESSION["num"];
 </table>
 </body>
 </html>
+<?php } else { ?>
+<?php header('location:../frontend/admin_login.php');  }?>
 
 

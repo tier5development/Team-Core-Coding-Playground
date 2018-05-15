@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 $show_shop_id=shop_id($conn);
 $num=$_SESSION["num"];
 ?>
+<?php if(isset($_SESSION["page_id"])) { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,3 +53,5 @@ $num=$_SESSION["num"];
 
 </body>
 </html>
+<?php } else {?>
+<?php header('location:../frontend/admin_login.php');  }?>

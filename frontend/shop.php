@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION["page_id"]))
+{ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,3 +37,5 @@
 
 </body>
 </html>
+<?php } else { ?>
+<?php header('location:../frontend/admin_login.php'); }?>

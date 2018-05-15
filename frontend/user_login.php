@@ -21,6 +21,7 @@
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password" placeholder="password" required autocomplete="off" name="password">
     </div>
+    <input type="hidden" name="user_id" value="login">
     <input type="hidden" name="functionality" value="user_login">
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
