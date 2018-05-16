@@ -56,6 +56,7 @@ switch ($functionality) {
 		break;
 }
 function user_registration($conn=null){
+	print_r($_POST);
 	if(ValidateUserRegistration()){
 		$name=$_POST['name'];
 		$_SESSION['name']=$name;
@@ -71,7 +72,7 @@ function user_registration($conn=null){
 		}
 		else{
 			mysqli_query($conn,$sql);
-			header('location: ../frontend/user_login.html');
+			header('location: ../frontend/user_login.php');
 		}
 	}
 	else{
@@ -89,7 +90,7 @@ function user_login($conn=null){
 		$count=mysqli_num_rows($result);
 		if($count == 1){
 			$_SESSION['user_id']=$user_id;
-			header('location : ../frontend/dashboard.php');
+			header('location: ../frontend/dashboard.php');
 		}
 		else{
 			echo "wrong information";
