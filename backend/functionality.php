@@ -56,10 +56,12 @@ switch ($functionality) {
 		break;
 }
 function user_registration($conn=null){
-	print_r($_POST);
+	# print_r($_POST);
+	# die;
 	if(ValidateUserRegistration()){
+		$flag=0;
 		$name=$_POST['name'];
-		$_SESSION['name']=$name;
+	  $_SESSION['name']=$name;
 		$email=$_POST['email'];
 		$password=$_POST['password'];
 		$sql="INSERT INTO user_registration (name,email,password) VALUES ('$name', '".mysqli_real_escape_string($conn,$email)."', '".mysqli_real_escape_string($conn,$password)."')";
@@ -68,11 +70,12 @@ function user_registration($conn=null){
 		$count=mysqli_num_rows($result);
 		if($count > 0){
 			echo "Email already present";
-			header('location : ../frontend/user_registration.php');
+			//header('location : ../frontend/user_registration.php');
 		}
 		else{
 			mysqli_query($conn,$sql);
-			header('location: ../frontend/user_login.php');
+			echo $flag;
+			//header('location: ../frontend/user_login.php');
 		}
 	}
 	else{
@@ -82,6 +85,7 @@ function user_registration($conn=null){
 }
 function user_login($conn=null){
 	if(ValidateUserLogin()){
+		$flag=0;
 		$user_id=$_POST['user_id'];
 		$email=$_POST['email'];
 		$password=$_POST['password'];
@@ -90,11 +94,13 @@ function user_login($conn=null){
 		$count=mysqli_num_rows($result);
 		if($count == 1){
 			$_SESSION['user_id']=$user_id;
-			header('location: ../frontend/dashboard.php');
+			echo $flag;
+			//header('location: ../frontend/dashboard.php');
 		}
 		else{
-			echo "wrong information";
-			header('location : ../frontend/user_registration.php');
+			$flag=1;
+			echo $flag;
+			//header('location : ../frontend/user_registration.php');
 		}
 	}
 	else{

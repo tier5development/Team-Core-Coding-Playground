@@ -30,10 +30,9 @@
       <input type="password" class="form-control" id="password" placeholder="password"  required autocomplete="off" name="password">
     </div>
     <input type="hidden" name="functionality" id="functionality" value="user_registration">
-    <button id="reg">Submit</button>
+    <input type="button" id="reg" value="Submit">
   </form>
 </div>
-
 </body>
 </html>
 
