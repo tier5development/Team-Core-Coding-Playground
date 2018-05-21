@@ -2,13 +2,21 @@
 session_start();
 require_once (__DIR__."/conn.php");
 require_once (__DIR__."/iniseterror.php");
-$functions=$_POST["func"];
+if(isset($_POST["func"])){
+    $functions=$_POST["func"];
+}elseif(isset($_GET["func"])){
+    $functions=$_GET["func"];
+}
+
 switch ($functions){
     case 'reg':
         signup($conn);
         break;
     case 'signin':
         signin($conn);
+        break;
+    case 'logout':
+        logout();
         break;
     default :
         $_SESSION['message2'] = 'no functions selected';
@@ -41,7 +49,7 @@ function signup($conn){
                     $res = $conn->query($query);
                     if ($res) {
                         $_SESSION['id'] = $email;
-                        $_SESSION['name'] = $fname . " " . $lname;
+                        $_SESSION['name'] = $fname;
                         $_SESSION['message1']="success";
                         header('Location: ../frontend/dashboard.php');
                     } else {
@@ -77,21 +85,30 @@ function signin($conn){
     $email=$_POST['email1'];
     $pass=$_POST['pass1'];
     $mdpass=md5($pass);
-    //checking email-id and password pair
-    $sql="SELECT * FROM `registration` WHERE `Email` LIKE '".$email."'AND `Password` = '".$mdpass."'";
-    $statement= $conn->prepare($sql);
-    $statement->execute();
-    $count_mail=$statement->fetch();
-    if($count_mail !=0){
+    //checking email id and password pair
+    $sql="SELECT * FROM `registration` WHERE `Email` = '".$email."'AND `Password` = '".$mdpass."'";
+    $statement= $conn->query($sql);
+    $data = $statement->fetch_assoc();
+    echo "<pre>";
+    print_r($data);
+    if($statement){
         $_SESSION['id'] = $email;
+        $_SESSION['name'] = $data["First Name"];
         $_SESSION['message1']="success";
         header('Location: ../frontend/dashboard.php');
     }
     else{
         $_SESSION['message']="You are not registerd with us ";
-        header('Location: ../frontend/login.php');
+        header('Location: ../frontend/Welcome.php');
     }
 
 }
+
+function logout (){
+    unset($_SESSION['id']);
+    $_SESSION['message']="You are logged out successfully";
+    header('Location: ../frontend/login.php');
+}
+
 
 ?>
