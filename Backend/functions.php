@@ -90,7 +90,7 @@ function signin($conn){
     $statement= $conn->query($sql);
     $data = $statement->fetch_assoc();
     echo "<pre>";
-    print_r($data);
+    //print_r($data);
     if($statement){
         $_SESSION['id'] = $email;
         $_SESSION['name'] = $data["First Name"];
