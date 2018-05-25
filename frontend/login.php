@@ -10,12 +10,8 @@ if(!isset($_SESSION['id'])){ ?>
     <link rel="stylesheet" href="../css/styles.css">
 
 <body>
-<?php
-session_start();
-echo "<h4>".$_SESSION['message']."</h4>";
-$_SESSION['message']="";
-?>
 <a class="button2" href="Welcome.php">Sign Up From here</a>
+<p><span id="res"></span></p>
 <form method="post" action="../Backend/functions.php" class="container">
     <table>
         <tr>
@@ -23,7 +19,7 @@ $_SESSION['message']="";
                 Email id :
             </td>
             <td>
-                <input type="email" name="email1" id="email"><br>
+                <input id="email" type="email" name="email1" id="email"><br>
             </td>
         </tr>
         <tr>
@@ -31,7 +27,7 @@ $_SESSION['message']="";
                 Password:
             </td>
             <td>
-                <input type="password" name="pass1"><br>
+                <input id="pass" type="password" name="pass1"><br>
             </td>
         </tr>
 
@@ -45,6 +41,9 @@ $_SESSION['message']="";
     </table>
     <input type="hidden" name="func" value="signin">
 </form>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>
 <?php
