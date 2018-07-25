@@ -28,7 +28,8 @@ class UserRequest extends FormRequest
             'lastName'          =>   'required',
             'email'             =>   'required|unique:users',
             'password'          =>   'required|min:8',
-            'confirmPassword'   =>   'required|same:password'
+            'confirmPassword'   =>   'required|same:password',
+            'checkbox'          =>   'accepted'
         ];
     }
 
@@ -42,12 +43,13 @@ class UserRequest extends FormRequest
         return [
             'firstName.required'        => 'Please provide a first name',
             'lastName.required'         => 'Please provide a last name',
-            'email.required'            => 'Please provide a email address',
+            'email.required'            => 'Please provide a :attribute address',
             'email.unique'              => 'This email is already taken',
             'password.required'         => 'Please provide a password',
             'password.min'              => 'Password should be minimum 8 character long',
             'confirmPassword.required'  => 'Please provide a confirm password',
-            'confirmPassword.same'      => 'Password and confirm password should be same'
+            'confirmPassword.same'      => 'Password and confirm password should be same',
+            'checkbox.accepted'         => 'Please accept the terms and condition'
         ];
     }
 }

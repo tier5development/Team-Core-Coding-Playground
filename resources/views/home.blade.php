@@ -5,8 +5,10 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
 	<!-- CSS for center align  -->
-		<link rel="stylesheet" href="{{asset('css/mycss/center.css')}}">
-
+	<link rel="stylesheet" href="{{asset('css/mycss/center.css')}}">	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
 </head>
 <body>
 	<div class="outer">
@@ -29,7 +31,7 @@
 						  </div>
 						</div>
 					@else
-						<a href="{{ route('user.login') }}"><button type="button" class="btn btn-success">Login</button></a>
+						<a href="{{ route('user.login') }}"><button type="button" class="btn btn-success" id="login">Login</button></a>
 						<a href="{{url('/register')}}"><button type="button" class="btn btn-primary">Register</button></a>
 					@endif
 				</center>

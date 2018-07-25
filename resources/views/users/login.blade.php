@@ -7,6 +7,58 @@
 
 	<!-- CSS for center align  -->
 		<link rel="stylesheet" href="{{asset('css/mycss.css')}}">
+
+	<!-- jQuery -->
+	   <script
+		  src="http://code.jquery.com/jquery-3.3.1.min.js"
+		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		  crossorigin="anonymous">
+		</script>
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+	<!-- jQuery validation -->
+    <script>
+    	$(document).ready(function(){
+    		$("#loginForm").validate({
+    			rules: {
+    				email: {
+    					required: true,
+    					email: true
+    				},
+    				password: {
+    					required: true
+    				}
+    			},
+    			messages: {
+    				email: {
+    					required: "Please provide a email",
+    					email: "Please provide a valid email id"
+    				},
+    				password: {
+    					required: "Please provide a proper password"
+    				}
+    			},
+	        	errorClass: "error-class",
+				validClass: "valid-class"
+    		});
+    	});
+    </script>
+    <style type="text/css">
+    	#card{
+    		border: 5px solid aqua;
+    	}
+    	.error-class {
+				color: #ff0000; /* red */
+				display: block;
+			}
+			.valid-class {
+				color: #00cc00; /* green */
+			}
+    </style>
+</head>
+
+
 </head>
 <body>
 	<center><br><br>
@@ -15,14 +67,14 @@
 		        {{Session::get('message')}}
 		    </div>
 		@endif
-		<form method="post" action="/login">
+		<form method="post" action="/login" id="loginForm">
 			@csrf				  
-		  	<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+		  	<div id="card" class="card text-white bg-primary mb-3" style="max-width: 20rem;">
 			  <div class="card-header"><h4>Login to Social Blog</h4></div>
 			  <div class="card-body">
 			    <h5 class="card-title">
 			    	<label for="email">Email address</label>
-					<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+					<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
 				</h5>
 				<span>
 					{{-- Display errors --}}
@@ -34,7 +86,7 @@
 				</span>
 				<h5 class="card-title">
 					<label for="password">Password</label>
-					<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+					<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
 				</h5>
 				<span>
 				{{-- Display errors --}}
@@ -50,5 +102,6 @@
 			</div>
 		</form>
 	</center>
+
 </body>
 </html>

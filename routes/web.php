@@ -56,7 +56,10 @@ Route::middleware(['authorize'])->group(function () {
 });
 
 	
-
+//Terms and condition page
+Route::get('/terms',function(){
+	return view('terms');
+});
 
 Route::get('/logout',[
 	'uses' => 'User\UserController@logout',
@@ -116,12 +119,12 @@ Route::middleware(['unAuthorize'])->group( function () {
 			'as'	=> 'user.view'
 		]);
 
-		//Search Users
-		Route::post('/search','User\ProfileController@searchUser');
-
-		//Search Posts
-		Route::get('/searchPost/{post_id}','Posts\PostController@searchPost');
+		//Search Users and posts
+		Route::post('/search','SearchController@search');
 });
 		
 
-
+//Route::get('/api','Posts\PostController@api');
+Route::get('/test', function () {
+    return view('Test');
+});

@@ -1,6 +1,20 @@
 @extends('layouts.header')
 
 @section('content')
+<style type="text/css">
+	#postBody {
+		border: 3px dotted magenta;
+	}
+	#description {
+    	height:100px;
+    	text-shadow: 0.1px 0.1px lime;
+		overflow: auto; 
+	}
+	::selection {
+		background: aquamarine;
+	}
+</style>
+
 {{-- display the posts --}}
 	<div class="content">
 		<div class="outer">
@@ -12,12 +26,13 @@
 						        {{Session::get('message')}}
 						    </div>
 						@endif
+						<p>{{ App\Helpers\Helper::totalProduct() }}</p>
 						@forelse ($allPost as $post)
-							<div class="card mb-3 card text-black bg-default mb-3">
+							<div  id="postBody" class="card mb-3 card text-black bg-default mb-3">
 								<h3 class="card-header"> {{ $post->title }} </h3>
 								  <div class="card-body">
 								  	<img style="height: 200px; width: 100%; display: block;" src="{{ asset('images/postPhoto/' .$post->photo)}}" alt="Card image">
-								  <div class="card-body">
+								  <div class="card-body" id="description">
 								    <p class="card-text"> {{ $post->description }} </p>
 								  </div>
 								  <ul class="list-group list-group-flush">
@@ -34,34 +49,31 @@
 								    {{$post->created_at->diffforHumans()}}<br>
 								  </div>
 								  	@if($post->author == Auth::user()->email)
-								  	<div><br>
-								  		{{-- edit --}}
-								    	<a href="edit/{{base64_encode($post->id)}}"> <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-info-sign"></i> Edit </button> </a>
-								    	{{-- delete --}}
-									    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
-									        <i class="glyphicon glyphicon-trash"></i> Delete
-									    </button>
-									    <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-										  {{-- hidden model --}}
-										  <div class="modal-dialog">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <h4 class="modal-title">Delete Parmanently</h4>
-										      </div>
-										      <div class="modal-body">
-										        <p>Are you sure about this ?</p>
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-										        <a href="{{ route('post.destroy',base64_encode($post->id)) }}">
-										        	<button type="button" class="btn btn-danger" id="confirm">Delete</button>
-										        </a>
-										      </div>
-										    </div>
-										  </div>
-										  {{-- hidden model ends --}}
-										</div>
-								    </div>
+									  	<div><br>
+									  		{{-- edit --}}
+									    	<a href="edit/{{base64_encode($post->id)}}"> <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-info-sign"></i> Edit </button> </a>
+
+									    	<button class="btn btn-danger"  data-toggle="modal" data-target="#confirm-delete-{{$post->id}}">
+	   										 Delete 
+											</button>
+
+									    	<div class="modal fade" id="confirm-delete-{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  										  <div class="modal-dialog">
+	     										  <div class="modal-content">
+		        									    <div class="modal-header">
+		              										  <b>Confirm Delete ?</b>
+		     										       </div>
+		          										 <div class="modal-body">
+		           		     								<i>Do you want to delete  {{$post->title}} ?</i>
+		           										 </div>
+		            									<div class="modal-footer">
+		               									 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		               										 <a class="btn btn-danger btn-ok" href="/delete/{{base64_encode($post->id)}}">Delete</a>
+		            									</div>
+	        										</div>
+	   											 </div>
+											 </div>
+									    </div>
 								    @else
 								    @endif
 								</div>
@@ -76,5 +88,4 @@
 			</div>
 		</div>
 	</div>
-
 @endsection

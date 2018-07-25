@@ -58,25 +58,4 @@ class ProfileController extends Controller
 	}
 
 
-	/*
-	 * Search User controller
-	 */
-	public function searchUser(Request $request)
-	{
-		try
-		{
-			$value = User::where('firstName',$request->key)->first();
-			if(!$value)
-			{
-				$value = User::where('lastName',$request->key)->get();
-				return view('users.searchUserResult',compact('value','request'));
-			}
-			$value = User::where('firstName',$request->key)->get();
-			return view('users.searchUserResult',compact('value','request'));			
-		}
-		catch(Exception $exception)
-		{
-			return $exception;
-		}
-	}
 }

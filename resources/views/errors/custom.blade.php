@@ -18,7 +18,7 @@
 					  <div class="card-header">Error</div>
 					  <div class="card-body">
 					    <h4 class="card-title">404 Not Found</h4>
-					    <p class="card-text">The page you are looking is not found <br> <h1> :( </h1>  </p>
+					    <p class="card-text">Somethig went wrong <br> <h1> :( </h1>  </p>
 				    </center>
 				  </div>
 				</div>

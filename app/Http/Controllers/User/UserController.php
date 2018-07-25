@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use Image;
+use Alert;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\LoginRequest;
+use Exception;
 
 
 
@@ -46,7 +48,7 @@ class UserController extends Controller
         //dd($request);
         try
         {
-            $user               = new User();
+            $user               = new Users();
             $user->firstName    = $request->firstName;
             $user->lastName     = $request->lastName;
             $user->email        = $request->email;
@@ -61,10 +63,10 @@ class UserController extends Controller
             $user->save();
             return redirect()->route('user.home')->with(['success' => true, 'message' => "Successfully Registered."]);
         }
-        catch(Exception $exception)
+        catch(\Exception $exception)
         {
-           return redirect()->route('user.home')->with(['success' => false, 'message' => $exception]);
-           // return $exception;
+           //return redirect()->route('user.home')->with(['success' => false, 'message' => $exception]);
+           return $exception;
         }
     }
 
@@ -142,7 +144,7 @@ class UserController extends Controller
 
         catch(Exception $exception)
         {
-            return $exception;
+            dd($exception->getMessage());
         }
     }
 
@@ -153,7 +155,9 @@ class UserController extends Controller
     {
         try
             {
+                //Alert::message('test');
                 Auth::logout();
+                 //alert()->success('You have been logged out.', 'Good bye!');
                     return redirect('/home');
             }
         catch(Exception $exception)

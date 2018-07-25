@@ -10,6 +10,7 @@ use App\User;
 use Image;
 use Auth;
 use App\Http\Requests\PostRequest;
+use App\Http\Resources\PostsResource;
 
 class PostController extends Controller
 {
@@ -59,7 +60,7 @@ class PostController extends Controller
 
             return redirect()->route('all.post');
         }
-        catch(Exception $exception)
+        catch(\Exception $exception)
         {
             return $exception;
         }
@@ -71,9 +72,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Posts $id)
     {
-        //
+        //return new PostsResource($id);
     }
 
     /**
@@ -103,7 +104,7 @@ class PostController extends Controller
             $post->title        = $request->title;
             $post->description  = $request->description;
             $post->update();
-            return redirect()->route('all.post')->with(['success' => true, 'message' => "Post ".$request->title." edited successfully "]);
+            return redirect()->route('all.post')->with(['success' => true, 'message' => "Post '".$request->title."' edited successfully "]);
         }
         catch(Exception $exception)
         {
@@ -119,6 +120,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        //dd(base64_decode($id));
         try
         {
             $post = Posts::findOrFail(base64_decode($id));
@@ -216,5 +218,13 @@ class PostController extends Controller
             return $exception;
         }
     }
+
+    /*
+     * Test API
+     */
+    // public function api()
+    // {
+    //     echo $api = Posts::all();
+    // }
 
 }
